@@ -6,24 +6,14 @@
   <title>Queen Usman | Novelist</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* Content-specific layout styling */
     .hero-minimal {
-      padding: 6rem 0 4rem;
+      padding: 6rem 0 3.5rem;
       max-width: 720px;
     }
-    .hero-minimal .author-name {
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      display: block;
-      font-weight: 600;
-    }
     .hero-minimal h1 {
-      font-size: 2.85rem;
+      font-size: 2.75rem;
       line-height: 1.25;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       font-weight: 400;
     }
     .hero-minimal .sub-tagline {
@@ -34,10 +24,10 @@
     }
     .featured-novel-split {
       display: grid;
-      grid-template-columns: 340px 1fr;
+      grid-template-columns: 320px 1fr;
       gap: 4rem;
       align-items: start;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
     .novel-cover-frame {
       width: 100%;
@@ -74,122 +64,89 @@
       font-weight: 600;
     }
     .novel-info h2 {
-      font-size: 2.4rem;
+      font-size: 2.3rem;
       margin-bottom: 0.5rem;
-      letter-spacing: 0.02em;
     }
-    .novel-info .genre-tagline {
+    .novel-info .metadata {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .novel-info p {
       font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+    .novel-info .supporting-line {
+      font-size: 0.95rem;
       font-style: italic;
       color: var(--text-muted);
       margin-bottom: 1.75rem;
       display: block;
     }
-    .novel-info p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: var(--text-primary);
-      margin-bottom: 1.5rem;
-      font-weight: 300;
-    }
     .inquiry-block {
       background-color: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      padding: 3.5rem;
-      margin: 4rem 0;
+      padding: 3rem;
+      margin: 4rem 0 2rem;
     }
     .inquiry-block h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-    .inquiry-block p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: var(--text-primary);
+    .inquiry-block .main-question {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-style: italic;
+      line-height: 1.5;
       margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+    .inquiry-block p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
       font-weight: 300;
     }
-    .inquiry-block p:last-of-type {
-      margin-bottom: 2rem;
-    }
     .essay-entry {
-      padding: 2.25rem 0;
+      padding: 2rem 0;
       border-bottom: 1px solid var(--border-color);
     }
     .essay-entry:first-child {
       border-top: 1px solid var(--border-color);
     }
     .essay-entry h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.6rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
       font-weight: 500;
     }
     .essay-entry p {
       font-size: 0.95rem;
       color: var(--text-muted);
       font-weight: 300;
-      margin-bottom: 0;
-    }
-    .books-stream {
-      display: flex;
-      flex-direction: column;
-      gap: 3.5rem;
-      margin-top: 2rem;
-    }
-    .book-stream-item {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 2.5rem;
-      align-items: center;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid var(--border-color);
-    }
-    .book-stream-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-    .book-stream-cover {
-      aspect-ratio: 2 / 3;
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1rem;
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
     .about-summary {
       max-width: 720px;
-      margin-top: 2rem;
     }
     .about-summary p {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       line-height: 1.85;
       font-weight: 300;
       margin-bottom: 1.5rem;
     }
-    .nav-links-row {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    @media (max-width: 820px) {
+    @media (max-width: 800px) {
       .featured-novel-split {
         grid-template-columns: 1fr;
         gap: 2.5rem;
-      }
-      .book-stream-item {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      .book-stream-cover {
-        max-width: 200px;
       }
       .inquiry-block {
         padding: 2rem;
@@ -208,7 +165,6 @@
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="fiction.html">Fiction</a></li>
           <li><a href="essays.html">Essays</a></li>
-          <li><a href="books.html">Books</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </nav>
@@ -220,54 +176,52 @@
 
       <!-- Hero Section -->
       <section class="hero-minimal">
-        <span class="author-name">Queen Usman</span>
         <h1>Novelist interested in how people become who they are.</h1>
-        <span class="sub-tagline">Fiction · Essays · Books</span>
+        <span class="sub-tagline">Fiction · Essays · About</span>
       </section>
 
       <hr class="divider">
 
-      <!-- Featured Novel Section -->
+      <!-- Featured Novel -->
       <section class="section" style="padding-top: 2rem;">
         <div class="featured-novel-split">
           
-          <!-- Novel Cover Artwork -->
           <div class="novel-cover-frame">
             <div class="cover-title">Or So She Thought</div>
             <div class="cover-author">Queen Usman</div>
           </div>
 
-          <!-- Premise & Actions -->
           <div class="novel-info">
             <span class="novel-status">Current Novel</span>
             <h2>Or So She Thought</h2>
-            <span class="genre-tagline">A 1990s royal psychological thriller about duty, desire, and the making of a self.</span>
+            <span class="metadata">1990s · Norwyn · Psychological Thriller</span>
             
             <p>
-              Elizabeth has spent her life learning what is expected of her. Her future is arranged. Her responsibilities are clear. The life ahead of her seems settled.
+              Elizabeth has spent her life learning how to live correctly. Her future is arranged. Her responsibilities are clear. The life ahead of her appears settled.
             </p>
             <p>
               Then she begins to wonder whether the things she wants were ever entirely hers to begin with.
             </p>
+            <span class="supporting-line">A psychological thriller about duty, desire, expectation, and the making of a self.</span>
             
-            <a href="fiction.html" class="btn-link" style="margin-top: 1rem;">Enter the Novel</a>
+            <a href="fiction.html" class="btn-link">Enter the Novel</a>
           </div>
 
         </div>
 
-        <!-- In-Depth Literary Description Block -->
+        <!-- Why This Story -->
         <div class="inquiry-block">
-          <h3>Why Or So She Thought</h3>
-          <p>
+          <h3>Why This Story</h3>
+          <p class="main-question">
             If you have spent your life learning what you are supposed to want, how do you know when a desire is actually yours?
           </p>
           <p>
-            <em>Or So She Thought</em> explores the quieter forms of influence that shape a person long before they recognize them as influence: family, tradition, affection, duty, repetition, expectation, and the simple habit of anticipating what others will think.
+            <em>Or So She Thought</em> began with an interest in a quieter kind of influence: the kind that does not always look like control. Family. Tradition. Affection. Duty. Repetition. Expectation.
           </p>
           <p>
-            Elizabeth's problem isn't merely that other people have made decisions for her. It is that she has become very good at making them for herself.
+            Things can become part of a person so gradually that, by the time they begin making choices, some of those choices already feel obvious. Elizabeth's question is not simply whether she can leave. It is whether she can recognize what she is choosing.
           </p>
-          <a href="fiction.html" class="btn-link">Explore the Novel</a>
+          <a href="fiction.html" class="btn-link" style="margin-top: 0.5rem;">Explore the Novel</a>
         </div>
       </section>
 
@@ -280,74 +234,32 @@
             <h2>Essays</h2>
             <span style="font-size: 0.95rem; color: var(--text-muted); font-style: italic; display: block; margin-top: 0.25rem;">Questions my stories leave behind.</span>
           </div>
-          <a href="essays.html" class="view-all">All Essays</a>
         </div>
 
         <div class="essay-stream">
           <article class="essay-entry">
             <h3><a href="essays.html">You Think It's Your Choice. That's the Interesting Part.</a></h3>
             <p>On the subtle boundary between authentic volition and well-rehearsed social conditioning.</p>
+            <a href="essays.html" class="btn-link">Read</a>
           </article>
 
           <article class="essay-entry">
             <h3><a href="essays.html">You Left Home. The Rules Came With You.</a></h3>
             <p>How inherited architectures of approval persist long after physical departures.</p>
+            <a href="essays.html" class="btn-link">Read</a>
           </article>
 
           <article class="essay-entry">
             <h3><a href="essays.html">What You Practice Eventually Starts Feeling Like You.</a></h3>
             <p>The quiet mechanism through which protective postures transform into permanent identity.</p>
+            <a href="essays.html" class="btn-link">Read</a>
           </article>
 
           <article class="essay-entry">
             <h3><a href="essays.html">The Person You Became Was Practicing Long Before You Knew It.</a></h3>
             <p>Observations on the early, silent adaptations that shape personal authority.</p>
+            <a href="essays.html" class="btn-link">Read All Essays</a>
           </article>
-        </div>
-
-        <div style="margin-top: 2.5rem;">
-          <a href="essays.html" class="btn-link">Read the Essays</a>
-        </div>
-      </section>
-
-      <hr class="divider">
-
-      <!-- Books Section -->
-      <section class="section">
-        <div class="section-title">
-          <div>
-            <h2>Books</h2>
-            <span style="font-size: 0.95rem; color: var(--text-muted); font-style: italic; display: block; margin-top: 0.25rem;">Fiction and other work by Queen Usman.</span>
-          </div>
-          <a href="books.html" class="view-all">View Catalogue</a>
-        </div>
-
-        <div class="books-stream">
-          <!-- Primary Work -->
-          <div class="book-stream-item">
-            <div class="book-stream-cover">
-              Or So She Thought
-            </div>
-            <div>
-              <span style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">Novel · Psychological Thriller</span>
-              <h3 style="font-size: 1.6rem; margin-bottom: 0.6rem;">Or So She Thought</h3>
-              <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem;">A woman begins to question the life she has spent years learning to want.</p>
-              <a href="fiction.html" class="btn-link">Read More</a>
-            </div>
-          </div>
-
-          <!-- Secondary/Earlier Work -->
-          <div class="book-stream-item" style="opacity: 0.85;">
-            <div class="book-stream-cover" style="font-size: 0.85rem;">
-              A Life of Design
-            </div>
-            <div>
-              <span style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">Nonfiction / Inquiry</span>
-              <h3 style="font-size: 1.35rem; margin-bottom: 0.6rem;">A Life of Design</h3>
-              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">An earlier work on self-command, structured standards, and personal baseline design.</p>
-              <a href="books.html" class="btn-link">View Book</a>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -364,32 +276,26 @@
             Queen Usman is a novelist interested in how people become who they are—the things they inherit, learn, desire, obey, and eventually question.
           </p>
           <p>
-            Her fiction explores identity, desire, power, relationships, and the ordinary ways people are shaped by the worlds around them. Her essays follow the questions her stories leave behind.
+            She writes fiction about identity, desire, power, relationships, and the ordinary ways people are shaped by the worlds around them. Her essays follow the questions her stories leave behind.
           </p>
-
-          <div class="nav-links-row">
-            <a href="fiction.html" class="btn-link">Fiction</a>
-            <a href="essays.html" class="btn-link">Essays</a>
-            <a href="about.html" class="btn-link">Full About</a>
-          </div>
+          <a href="about.html" class="btn-link" style="margin-top: 1rem;">About</a>
         </div>
       </section>
 
     </div>
   </main>
 
-  <!-- Editorial Footer -->
+  <!-- Clean Footer -->
   <footer class="site-footer">
     <div class="wrapper">
       <div class="footer-content">
         <div>
-          <div class="brand" style="font-size: 1.2rem; margin-bottom: 0.5rem;">Queen Usman</div>
+          <div class="brand" style="font-size: 1.15rem; margin-bottom: 0.35rem;">Queen Usman</div>
           <p style="font-size: 0.9rem; color: var(--text-muted); font-weight: 300; margin-bottom: 0;">Novelist interested in how people become who they are.</p>
         </div>
         <ul class="footer-links">
           <li><a href="fiction.html">Fiction</a></li>
           <li><a href="essays.html">Essays</a></li>
-          <li><a href="books.html">Books</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
