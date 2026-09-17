@@ -1,0 +1,477 @@
+/* ============================================================
+   Queen Usman — author site
+   Shared stylesheet
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+:root {
+  --paper: #F7F4EC;
+  --ink: #201D1A;
+  --ink-soft: #4A443C;
+  --accent: #3F4B3C;
+  --rule: #C9C2B4;
+  --muted: #6E6659;
+  --paper-alt: #F1ECE0;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --measure: 680px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Layout shell ---------- */
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.wrap-wide {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header / nav ---------- */
+
+header.site-header {
+  padding: 40px 0 28px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.header-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.site-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+nav.primary-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+nav.primary-nav li {
+  display: flex;
+  align-items: center;
+}
+
+nav.primary-nav li + li::before {
+  content: '·';
+  margin: 0 14px;
+  color: var(--rule);
+}
+
+nav.primary-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color 0.15s ease;
+}
+
+nav.primary-nav a:hover,
+nav.primary-nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: 96px 0 88px;
+}
+
+.hero .wrap {
+  max-width: 760px;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(48px, 8vw, 76px);
+  letter-spacing: 0.01em;
+  line-height: 1.02;
+  margin: 0 0 28px;
+}
+
+.hero-line {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(20px, 2.6vw, 26px);
+  color: var(--ink-soft);
+  max-width: 30ch;
+  margin: 0 0 44px;
+  line-height: 1.45;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-actions a {
+  text-decoration: none;
+  color: var(--ink);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.hero-actions a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Section rhythm ---------- */
+
+section {
+  padding: 76px 0;
+  border-top: 1px solid var(--rule);
+}
+
+section:first-of-type {
+  border-top: none;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+/* ---------- Current novel section ---------- */
+
+.novel-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(30px, 4vw, 40px);
+  margin: 0 0 10px;
+  line-height: 1.1;
+}
+
+.novel-meta {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 40px;
+}
+
+.novel-copy p {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.65;
+  margin: 0 0 22px;
+  color: var(--ink);
+}
+
+.novel-support {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 30px 0 40px;
+  max-width: 46ch;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--accent);
+  padding: 14px 26px;
+  border: 1px solid var(--accent);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn-ghost {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Why this story ---------- */
+
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.4;
+  margin: 0 0 36px;
+  max-width: 22ch;
+}
+
+.body-copy p {
+  margin: 0 0 20px;
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+.body-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.trait-list {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink);
+  margin: 28px 0;
+}
+
+/* ---------- Essay cards ---------- */
+
+.essay-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.essay-item {
+  padding: 34px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.essay-item:first-child {
+  padding-top: 0;
+}
+
+.essay-item:last-child {
+  border-bottom: none;
+}
+
+.essay-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 23px;
+  margin: 0 0 10px;
+}
+
+.essay-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.essay-excerpt {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  max-width: 58ch;
+  margin: 0 0 16px;
+}
+
+.essay-read {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.essay-read:hover {
+  text-decoration: underline;
+}
+
+.section-cta {
+  margin-top: 44px;
+}
+
+/* ---------- About ---------- */
+
+.about-copy p {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0 0 24px;
+}
+
+/* ---------- Fiction page ---------- */
+
+.fiction-hero {
+  padding: 72px 0 60px;
+}
+
+.fiction-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .fiction-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.book-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background: var(--paper-alt);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  padding: 20px;
+}
+
+.fiction-hook {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 22px 0 0;
+}
+
+.fiction-block {
+  margin-bottom: 48px;
+}
+
+.fiction-block:last-child {
+  margin-bottom: 0;
+}
+
+.fiction-block h3 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+.fiction-block p {
+  color: var(--ink-soft);
+  font-size: 16px;
+  margin: 0 0 16px;
+  max-width: 60ch;
+}
+
+.questions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.questions-list li {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.questions-list li:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Minimal Footer ---------- */
+
+footer.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-copyright {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
