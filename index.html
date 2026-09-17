@@ -1,307 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Queen Usman | Novelist</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    .hero-minimal {
-      padding: 6rem 0 3.5rem;
-      max-width: 720px;
-    }
-    .hero-minimal h1 {
-      font-size: 2.75rem;
-      line-height: 1.25;
-      margin-bottom: 1.25rem;
-      font-weight: 400;
-    }
-    .hero-minimal .sub-tagline {
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .featured-novel-split {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 4rem;
-      align-items: start;
-      margin-top: 1rem;
-    }
-    .novel-cover-frame {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
-    }
-    .novel-cover-frame .cover-title {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .novel-cover-frame .cover-author {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .novel-info .novel-status {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      display: block;
-      font-weight: 600;
-    }
-    .novel-info h2 {
-      font-size: 2.3rem;
-      margin-bottom: 0.5rem;
-    }
-    .novel-info .metadata {
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-    .novel-info p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-primary);
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-    }
-    .novel-info .supporting-line {
-      font-size: 0.95rem;
-      font-style: italic;
-      color: var(--text-muted);
-      margin-bottom: 1.75rem;
-      display: block;
-    }
-    .inquiry-block {
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      padding: 3rem;
-      margin: 4rem 0 2rem;
-    }
-    .inquiry-block h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1.25rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .inquiry-block .main-question {
-      font-family: var(--font-serif);
-      font-size: 1.45rem;
-      font-style: italic;
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-      color: var(--text-primary);
-    }
-    .inquiry-block p {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text-primary);
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-    }
-    .essay-entry {
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border-color);
-    }
-    .essay-entry:first-child {
-      border-top: 1px solid var(--border-color);
-    }
-    .essay-entry h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    .essay-entry p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      font-weight: 300;
-      margin-bottom: 1rem;
-    }
-    .about-summary {
-      max-width: 720px;
-    }
-    .about-summary p {
-      font-size: 1.1rem;
-      line-height: 1.85;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
-    @media (max-width: 800px) {
-      .featured-novel-split {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-      .inquiry-block {
-        padding: 2rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Queen Usman | Novelist</title>
+<meta name="description" content="Queen Usman is a novelist interested in how people become who they are.">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Site Navigation -->
-  <header class="site-header">
-    <div class="wrapper nav-container">
-      <a href="index.html" class="brand">Queen Usman</a>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="fiction.html">Fiction</a></li>
-          <li><a href="essays.html">Essays</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-name" href="index.html">Queen Usman</a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="fiction.html">Fiction</a></li>
+        <li><a href="essays.html">Essays</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <div class="wrapper">
+<main>
 
-      <!-- Hero Section -->
-      <section class="hero-minimal">
-        <h1>Novelist interested in how people become who they are.</h1>
-        <span class="sub-tagline">Fiction · Essays · About</span>
-      </section>
-
-      <hr class="divider">
-
-      <!-- Featured Novel -->
-      <section class="section" style="padding-top: 2rem;">
-        <div class="featured-novel-split">
-          
-          <div class="novel-cover-frame">
-            <div class="cover-title">Or So She Thought</div>
-            <div class="cover-author">Queen Usman</div>
-          </div>
-
-          <div class="novel-info">
-            <span class="novel-status">Current Novel</span>
-            <h2>Or So She Thought</h2>
-            <span class="metadata">1990s · Norwyn · Psychological Thriller</span>
-            
-            <p>
-              Elizabeth has spent her life learning how to live correctly. Her future is arranged. Her responsibilities are clear. The life ahead of her appears settled.
-            </p>
-            <p>
-              Then she begins to wonder whether the things she wants were ever entirely hers to begin with.
-            </p>
-            <span class="supporting-line">A psychological thriller about duty, desire, expectation, and the making of a self.</span>
-            
-            <a href="fiction.html" class="btn-link">Enter the Novel</a>
-          </div>
-
-        </div>
-
-        <!-- Why This Story -->
-        <div class="inquiry-block">
-          <h3>Why This Story</h3>
-          <p class="main-question">
-            If you have spent your life learning what you are supposed to want, how do you know when a desire is actually yours?
-          </p>
-          <p>
-            <em>Or So She Thought</em> began with an interest in a quieter kind of influence: the kind that does not always look like control. Family. Tradition. Affection. Duty. Repetition. Expectation.
-          </p>
-          <p>
-            Things can become part of a person so gradually that, by the time they begin making choices, some of those choices already feel obvious. Elizabeth's question is not simply whether she can leave. It is whether she can recognize what she is choosing.
-          </p>
-          <a href="fiction.html" class="btn-link" style="margin-top: 0.5rem;">Explore the Novel</a>
-        </div>
-      </section>
-
-      <hr class="divider">
-
-      <!-- Essays Section -->
-      <section class="section">
-        <div class="section-title">
-          <div>
-            <h2>Essays</h2>
-            <span style="font-size: 0.95rem; color: var(--text-muted); font-style: italic; display: block; margin-top: 0.25rem;">Questions my stories leave behind.</span>
-          </div>
-        </div>
-
-        <div class="essay-stream">
-          <article class="essay-entry">
-            <h3><a href="essays.html">You Think It's Your Choice. That's the Interesting Part.</a></h3>
-            <p>On the subtle boundary between authentic volition and well-rehearsed social conditioning.</p>
-            <a href="essays.html" class="btn-link">Read</a>
-          </article>
-
-          <article class="essay-entry">
-            <h3><a href="essays.html">You Left Home. The Rules Came With You.</a></h3>
-            <p>How inherited architectures of approval persist long after physical departures.</p>
-            <a href="essays.html" class="btn-link">Read</a>
-          </article>
-
-          <article class="essay-entry">
-            <h3><a href="essays.html">What You Practice Eventually Starts Feeling Like You.</a></h3>
-            <p>The quiet mechanism through which protective postures transform into permanent identity.</p>
-            <a href="essays.html" class="btn-link">Read</a>
-          </article>
-
-          <article class="essay-entry">
-            <h3><a href="essays.html">The Person You Became Was Practicing Long Before You Knew It.</a></h3>
-            <p>Observations on the early, silent adaptations that shape personal authority.</p>
-            <a href="essays.html" class="btn-link">Read All Essays</a>
-          </article>
-        </div>
-      </section>
-
-      <hr class="divider">
-
-      <!-- About Section -->
-      <section class="section">
-        <div class="section-title">
-          <h2>About Queen Usman</h2>
-        </div>
-
-        <div class="about-summary">
-          <p>
-            Queen Usman is a novelist interested in how people become who they are—the things they inherit, learn, desire, obey, and eventually question.
-          </p>
-          <p>
-            She writes fiction about identity, desire, power, relationships, and the ordinary ways people are shaped by the worlds around them. Her essays follow the questions her stories leave behind.
-          </p>
-          <a href="about.html" class="btn-link" style="margin-top: 1rem;">About</a>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- Clean Footer -->
-  <footer class="site-footer">
-    <div class="wrapper">
-      <div class="footer-content">
-        <div>
-          <div class="brand" style="font-size: 1.15rem; margin-bottom: 0.35rem;">Queen Usman</div>
-          <p style="font-size: 0.9rem; color: var(--text-muted); font-weight: 300; margin-bottom: 0;">Novelist interested in how people become who they are.</p>
-        </div>
-        <ul class="footer-links">
-          <li><a href="fiction.html">Fiction</a></li>
-          <li><a href="essays.html">Essays</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="hero-name">Queen Usman</h1>
+      <p class="hero-line">Novelist interested in how people become who they are.</p>
+      <div class="hero-actions">
+        <a href="fiction.html">Fiction</a>
+        <a href="essays.html">Essays</a>
+        <a href="about.html">About</a>
       </div>
-      <p class="copyright">© 2026 Queen Usman. All rights reserved.</p>
     </div>
-  </footer>
+  </section>
+
+  <!-- CURRENT NOVEL -->
+  <section id="current-novel">
+    <div class="wrap">
+      <p class="eyebrow">Current Novel</p>
+      <h2 class="novel-title">Or So She Thought</h2>
+      <p class="novel-meta">1990s · Norwyn · Psychological Thriller</p>
+
+      <div class="novel-copy">
+        <p>Elizabeth has spent her life learning how to live correctly.</p>
+        <p>Her future is arranged. Her responsibilities are clear. The life ahead of her appears settled.</p>
+        <p>Then she begins to wonder whether the things she wants were ever entirely hers to begin with.</p>
+      </div>
+
+      <p class="novel-support">A psychological thriller about duty, desire, expectation, and the making of a self.</p>
+
+      <!-- Replace this href with the live interactive novel URL when ready -->
+      <a class="btn" href="https://your-novel-site-goes-here.example.com">Enter the Novel →</a>
+    </div>
+  </section>
+
+  <!-- WHY THIS STORY -->
+  <section id="why-this-story">
+    <div class="wrap">
+      <p class="eyebrow">Why This Story</p>
+      <p class="pull-quote">If you have spent your life learning what you are supposed to want, how do you know when a desire is actually yours?</p>
+
+      <div class="body-copy">
+        <p>Or So She Thought began with an interest in a quieter kind of influence: the kind that does not always look like control.</p>
+        <p class="trait-list">Family. Tradition. Affection. Duty. Repetition. Expectation.</p>
+        <p>Things can become part of a person so gradually that, by the time they begin making choices, some of those choices already feel obvious.</p>
+        <p>Elizabeth's question is not simply whether she can leave.</p>
+        <p>It is whether she can recognize what she is choosing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESSAYS -->
+  <section id="essays">
+    <div class="wrap">
+      <p class="eyebrow">Essays</p>
+      <p class="pull-quote">Questions my stories leave behind.</p>
+
+      <ul class="essay-list">
+        <!-- PLACEHOLDER ESSAYS — replace with real titles/excerpts/links -->
+        <li class="essay-item">
+          <h3 class="essay-title">On Inheriting a Life You Didn't Choose</h3>
+          <p class="essay-excerpt">What we call character is often just repetition we've stopped noticing. A look at how families hand down more than they mean to.</p>
+          <a class="essay-read" href="essays.html">Read →</a>
+        </li>
+        <li class="essay-item">
+          <h3 class="essay-title">The Obedience That Looks Like Rebellion</h3>
+          <p class="essay-excerpt">Some acts of defiance are just another set of rules, learned early and worn well. Why leaving isn't always the same as choosing.</p>
+          <a class="essay-read" href="essays.html">Read →</a>
+        </li>
+        <li class="essay-item">
+          <h3 class="essay-title">Writing Characters Who Don't Know They're Trapped</h3>
+          <p class="essay-excerpt">The hardest thing to dramatize isn't a person fighting their circumstances — it's a person who mistakes their circumstances for themselves.</p>
+          <a class="essay-read" href="essays.html">Read →</a>
+        </li>
+      </ul>
+
+      <div class="section-cta">
+        <a class="btn-ghost" href="essays.html">Read All Essays →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <div class="about-copy">
+        <p>Queen Usman is a novelist interested in how people become who they are — the things they inherit, learn, desire, obey, and eventually question.</p>
+        <p>She writes fiction about identity, desire, power, relationships, and the ordinary ways people are shaped by the worlds around them.</p>
+        <p>Her essays follow the questions her stories leave behind.</p>
+      </div>
+      <div class="section-cta">
+        <a class="btn-ghost" href="about.html">About →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-name">Queen Usman</p>
+    <p class="footer-line">Novelist interested in how people become who they are.</p>
+    <ul class="footer-nav">
+      <li><a href="fiction.html">Fiction</a></li>
+      <li><a href="essays.html">Essays</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <p class="footer-copyright">© 2026 Queen Usman</p>
+  </div>
+</footer>
 
 </body>
 </html>
