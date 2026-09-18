@@ -355,3 +355,202 @@ footer.site-footer {
     padding: 72px 0 52px;
   }
 }
+/* ---------- Classics / The Reader Life Archive ---------- */
+
+.classics-header {
+  padding: 100px 0 60px;
+  text-align: center;
+}
+
+.classics-title {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 5.5vw, 60px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text-ink);
+  margin-bottom: 18px;
+}
+
+.classics-deck {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(18px, 2.4vw, 22px);
+  color: var(--text-muted);
+  max-width: 32ch;
+  margin: 0 auto 40px;
+  line-height: 1.45;
+}
+
+.classics-filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-stone);
+}
+
+.filter-item {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.filter-item:hover,
+.filter-item.active {
+  color: var(--accent-wine);
+  border-bottom-color: var(--accent-wine);
+}
+
+/* Shelf Grid */
+.classics-shelf {
+  padding: 80px 0 100px;
+  border-top: 1px solid var(--border-stone);
+}
+
+.classics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px 36px;
+}
+
+/* Individual Book Plate */
+.classic-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tactile Paper Book Mockup */
+.card-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background-color: var(--bg-ivory);
+  border: 1px solid var(--border-stone);
+  padding: 30px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 10px 26px rgba(23, 23, 23, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* The 2% Wine Spine Edge */
+.card-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--accent-wine);
+}
+
+.classic-card:hover .card-cover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(23, 23, 23, 0.07);
+}
+
+.card-cover-era {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.card-cover-title {
+  font-family: var(--font-serif);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-ink);
+}
+
+.card-cover-author {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Card Typography */
+.card-content {
+  padding-top: 24px;
+}
+
+.card-meta {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-ink);
+  margin-bottom: 2px;
+}
+
+.card-author {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.card-note {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.card-link {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-ink);
+  border-bottom: 1px solid var(--border-stone);
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.card-link:hover {
+  color: var(--accent-wine);
+  border-color: var(--accent-wine);
+}
+
+/* Responsive Grid */
+@media (max-width: 960px) {
+  .classics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .classics-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .card-cover {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .classics-header {
+    padding: 68px 0 44px;
+  }
+}
