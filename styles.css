@@ -1,22 +1,21 @@
 /* ============================================================
-   Queen Usman — Editorial Luxury Architecture
+   Queen Usman — Editorial Luxury (Mobile-First Architecture)
    Palette: Warm Alabaster (#F9F8F6) | Deep Onyx (#1A1A1A) | Burnished Amber (#C5A059)
-   Role: Fine-Press Literary & Editorial Showcase
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --alabaster: #F9F8F6;       /* Surface ground */
-  --onyx: #1A1A1A;            /* Primary editorial ink */
-  --amber: #C5A059;           /* Burnished amber luxury accent */
-  --muted-stone: #78736B;     /* Secondary editorial text */
-  --border-hairline: #E6E1D8; /* Delicate bookbinding rules */
-  --surface-card: #FFFFFF;    /* Elevated paper surface */
+  --alabaster: #F9F8F6;
+  --onyx: #1A1A1A;
+  --amber: #C5A059;
+  --muted-stone: #78736B;
+  --border-hairline: #E6E1D8;
+  --surface-card: #FFFFFF;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-  --shadow-plate: 0 16px 40px rgba(26, 26, 26, 0.05), 0 2px 6px rgba(26, 26, 26, 0.02);
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow-plate: 0 14px 34px rgba(26, 26, 26, 0.05), 0 2px 6px rgba(26, 26, 26, 0.02);
 }
 
 * {
@@ -25,7 +24,9 @@
   padding: 0;
 }
 
-html {
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Guarantees zero side-scroll on phones */
   scroll-behavior: smooth;
 }
 
@@ -41,62 +42,70 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Containers */
+/* Base Responsive Containers */
 .wrap {
+  width: 100%;
   max-width: 740px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 24px;
 }
 
 .wrap-wide {
+  width: 100%;
   max-width: 1060px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 24px;
 }
 
-/* Header & Navigation */
+/* Header & Mobile-Friendly Nav */
 header.site-header {
   border-bottom: 1px solid var(--border-hairline);
-  background-color: var(--alabaster);
+  background-color: rgba(249, 248, 246, 0.96);
+  backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100;
 }
 
 .header-inner {
   max-width: 1060px;
   margin: 0 auto;
-  padding: 24px 28px;
+  padding: 20px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .site-name {
   font-family: var(--font-serif);
-  font-size: 23px;
+  font-size: 21px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--onyx);
+  white-space: nowrap;
 }
 
 nav.primary-nav ul {
   display: flex;
   list-style: none;
-  gap: 32px;
+  gap: 22px;
+  flex-wrap: wrap;
 }
 
 nav.primary-nav a {
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted-stone);
-  padding-bottom: 4px;
+  padding: 6px 0;
+  display: inline-block;
   border-bottom: 1px solid transparent;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 nav.primary-nav a:hover,
@@ -107,44 +116,45 @@ nav.primary-nav a[aria-current="page"] {
 
 /* Hero Section */
 .hero {
-  padding: 120px 0 92px;
+  padding: 96px 0 72px;
   text-align: center;
 }
 
 .hero-name {
   font-family: var(--font-serif);
-  font-size: clamp(52px, 8vw, 84px);
+  font-size: clamp(40px, 9vw, 84px);
   font-weight: 400;
   letter-spacing: 0.02em;
-  line-height: 1.05;
-  margin-bottom: 22px;
+  line-height: 1.08;
+  margin-bottom: 18px;
   color: var(--onyx);
 }
 
 .hero-line {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(22px, 3vw, 29px);
+  font-size: clamp(19px, 4.5vw, 28px);
   color: var(--muted-stone);
-  max-width: 30ch;
-  margin: 0 auto 40px;
+  max-width: 32ch;
+  margin: 0 auto 34px;
   line-height: 1.45;
 }
 
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 36px;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
 .hero-actions a {
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted-stone);
   border-bottom: 1px solid var(--border-hairline);
-  padding-bottom: 4px;
-  transition: all 0.25s ease;
+  padding: 4px 2px;
+  transition: all 0.2s ease;
 }
 
 .hero-actions a:hover {
@@ -152,31 +162,31 @@ nav.primary-nav a[aria-current="page"] {
   border-color: var(--amber);
 }
 
-/* Sections */
+/* Universal Section Spacing */
 section {
-  padding: 96px 0;
+  padding: 80px 0;
   border-top: 1px solid var(--border-hairline);
 }
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--amber);
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: block;
 }
 
 /* Novel Showcase Card */
 .novel-showcase-card {
   display: grid;
-  grid-template-columns: 290px 1fr;
-  gap: 64px;
+  grid-template-columns: 280px 1fr;
+  gap: 52px;
   align-items: center;
   background-color: var(--surface-card);
   border: 1px solid var(--border-hairline);
-  padding: 58px 50px;
+  padding: 48px 40px;
   box-shadow: var(--shadow-plate);
 }
 
@@ -185,7 +195,7 @@ section {
   aspect-ratio: 2 / 3;
   background-color: var(--alabaster);
   border: 1px solid var(--border-hairline);
-  padding: 32px 22px;
+  padding: 28px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -193,7 +203,6 @@ section {
   position: relative;
 }
 
-/* Burnished Amber Spine Hairline */
 .book-leaf-preview::before {
   content: '';
   position: absolute;
@@ -206,14 +215,14 @@ section {
 
 .book-leaf-tag {
   font-size: 9px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted-stone);
 }
 
 .book-leaf-title {
   font-family: var(--font-serif);
-  font-size: 27px;
+  font-size: 25px;
   font-weight: 500;
   line-height: 1.2;
   color: var(--onyx);
@@ -228,24 +237,24 @@ section {
 
 .novel-title {
   font-family: var(--font-serif);
-  font-size: clamp(36px, 4.2vw, 48px);
+  font-size: clamp(30px, 6vw, 46px);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: 8px;
   color: var(--onyx);
 }
 
 .novel-meta {
   font-size: 12px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted-stone);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .novel-copy p {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.65;
   margin-bottom: 16px;
   color: var(--onyx);
@@ -254,21 +263,24 @@ section {
 .novel-support {
   font-size: 14px;
   line-height: 1.65;
-  margin-bottom: 36px;
+  margin-bottom: 30px;
   max-width: 48ch;
   color: var(--muted-stone);
 }
 
-/* Luxury Action Buttons */
+/* Touch-Friendly Action Buttons */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #FFFFFF;
   background-color: var(--onyx);
   border: 1px solid var(--onyx);
-  padding: 16px 32px;
+  padding: 0 32px;
   transition: all 0.25s ease;
 }
 
@@ -281,13 +293,13 @@ section {
 .btn-ghost {
   display: inline-block;
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--onyx);
   border-bottom: 1px solid var(--border-hairline);
   padding-bottom: 4px;
-  margin-top: 36px;
-  transition: all 0.25s ease;
+  margin-top: 32px;
+  transition: all 0.2s ease;
 }
 
 .btn-ghost:hover {
@@ -295,38 +307,38 @@ section {
   border-color: var(--amber);
 }
 
-/* Prose & Typography */
+/* Prose Sections */
 .pull-quote {
   font-family: var(--font-serif);
-  font-size: clamp(26px, 3.4vw, 36px);
+  font-size: clamp(24px, 5vw, 34px);
   font-style: italic;
   line-height: 1.35;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   color: var(--onyx);
 }
 
 .body-copy p {
   font-size: 16px;
-  line-height: 1.85;
+  line-height: 1.8;
   margin-bottom: 18px;
   color: var(--muted-stone);
 }
 
 .trait-list {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 19px;
   font-style: italic;
-  margin: 28px 0;
+  margin: 24px 0;
   color: var(--onyx);
 }
 
-/* Essay Archive */
+/* Essay Archive List */
 .essay-list {
   list-style: none;
 }
 
 .essay-item {
-  padding: 36px 0;
+  padding: 30px 0;
   border-bottom: 1px solid var(--border-hairline);
 }
 
@@ -336,7 +348,7 @@ section {
 
 .essay-meta {
   font-size: 10px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--amber);
   margin-bottom: 8px;
@@ -345,7 +357,7 @@ section {
 
 .essay-title {
   font-family: var(--font-serif);
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 500;
   margin-bottom: 10px;
   color: var(--onyx);
@@ -353,7 +365,7 @@ section {
 
 .essay-excerpt {
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.68;
   margin-bottom: 16px;
   color: var(--muted-stone);
 }
@@ -364,8 +376,9 @@ section {
   text-transform: uppercase;
   color: var(--onyx);
   border-bottom: 1px solid var(--border-hairline);
-  padding-bottom: 2px;
-  transition: all 0.25s ease;
+  padding-bottom: 3px;
+  display: inline-block;
+  transition: all 0.2s ease;
 }
 
 .essay-read:hover {
@@ -375,26 +388,26 @@ section {
 
 /* Classics Reading Shelf */
 .classics-header {
-  padding: 110px 0 64px;
+  padding: 96px 0 52px;
   text-align: center;
 }
 
 .classics-title {
   font-family: var(--font-serif);
-  font-size: clamp(40px, 5.8vw, 64px);
+  font-size: clamp(34px, 7vw, 60px);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.12;
   color: var(--onyx);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .classics-deck {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(19px, 2.5vw, 23px);
+  font-size: clamp(18px, 3.8vw, 22px);
   color: var(--muted-stone);
   max-width: 32ch;
-  margin: 0 auto 44px;
+  margin: 0 auto 36px;
   line-height: 1.45;
 }
 
@@ -402,20 +415,20 @@ section {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 28px;
-  padding-top: 24px;
+  gap: 18px 24px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-hairline);
 }
 
 .filter-item {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted-stone);
   cursor: pointer;
-  padding-bottom: 4px;
+  padding: 4px 0;
   border-bottom: 1px solid transparent;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .filter-item:hover,
@@ -425,14 +438,14 @@ section {
 }
 
 .classics-shelf {
-  padding: 88px 0 110px;
+  padding: 72px 0 96px;
   border-top: 1px solid var(--border-hairline);
 }
 
 .classics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 52px 38px;
+  gap: 48px 32px;
 }
 
 .classic-card {
@@ -445,14 +458,14 @@ section {
   aspect-ratio: 2 / 3;
   background-color: var(--surface-card);
   border: 1px solid var(--border-hairline);
-  padding: 32px 22px;
+  padding: 28px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
   position: relative;
   box-shadow: var(--shadow-plate);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease;
 }
 
 .card-cover::before {
@@ -465,21 +478,16 @@ section {
   background-color: var(--amber);
 }
 
-.classic-card:hover .card-cover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 44px rgba(26, 26, 26, 0.08);
-}
-
 .card-cover-era {
   font-size: 10px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted-stone);
 }
 
 .card-cover-title {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 500;
   line-height: 1.25;
   color: var(--onyx);
@@ -487,18 +495,18 @@ section {
 
 .card-cover-author {
   font-size: 10px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted-stone);
 }
 
 .card-content {
-  padding-top: 24px;
+  padding-top: 20px;
 }
 
 .card-meta {
   font-size: 10px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--amber);
   font-weight: 600;
@@ -508,7 +516,7 @@ section {
 
 .card-title {
   font-family: var(--font-serif);
-  font-size: 23px;
+  font-size: 22px;
   font-weight: 500;
   line-height: 1.2;
   color: var(--onyx);
@@ -527,133 +535,113 @@ section {
   font-size: 14px;
   line-height: 1.65;
   color: var(--muted-stone);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .card-link {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--onyx);
   border-bottom: 1px solid var(--border-hairline);
   padding-bottom: 2px;
   display: inline-block;
-  transition: all 0.25s ease;
 }
 
-.card-link:hover {
-  color: var(--amber);
-  border-color: var(--amber);
-}
-
-/* Fiction Page Elements */
-.fiction-grid {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 60px;
-  align-items: start;
-}
-
-.book-cover {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  background-color: var(--surface-card);
-  border: 1px solid var(--border-hairline);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 15px;
-  text-align: center;
-  padding: 24px;
-  box-shadow: var(--shadow-plate);
-}
-
-.fiction-hook {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 23px;
-  line-height: 1.5;
-  margin: 24px 0 34px;
-  color: var(--onyx);
-}
-
-.fiction-block {
-  margin-bottom: 48px;
-}
-
-.fiction-block h3 {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--amber);
-  margin-bottom: 16px;
-  font-weight: 600;
-}
-
-.fiction-block p {
-  font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 16px;
-  max-width: 60ch;
-  color: var(--muted-stone);
-}
-
-.questions-list {
-  list-style: none;
-}
-
-.questions-list li {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  font-style: italic;
-  line-height: 1.5;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border-hairline);
-  color: var(--onyx);
-}
-
-/* Footer */
+/* Minimal Footer */
 footer.site-footer {
   border-top: 1px solid var(--border-hairline);
-  padding: 52px 0;
+  padding: 44px 0;
   text-align: center;
-  background-color: var(--alabaster);
 }
 
 .footer-copyright {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted-stone);
 }
 
-/* Responsive */
+/* ============================================================
+   RESPONSIVE MEDIA QUERIES (TABLET & MOBILE BREAKPOINTS)
+   ============================================================ */
+
 @media (max-width: 960px) {
   .classics-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 40px 24px;
   }
 }
 
 @media (max-width: 768px) {
-  .novel-showcase-card,
-  .fiction-grid {
-    grid-template-columns: 1fr;
-    padding: 36px 24px;
-    gap: 36px;
+  /* Layout adjustments */
+  .wrap, .wrap-wide {
+    padding: 0 20px;
   }
-  .book-leaf-preview,
-  .card-cover {
-    max-width: 210px;
+
+  section {
+    padding: 68px 0;
+  }
+
+  /* Single Column Novel Showcase Card */
+  .novel-showcase-card {
+    grid-template-columns: 1fr;
+    padding: 34px 22px;
+    gap: 32px;
+    text-align: left;
+  }
+
+  .book-leaf-preview {
+    max-width: 190px;
     margin: 0 auto;
   }
-  .hero,
-  .classics-header {
-    padding: 76px 0 54px;
+
+  /* Make button comfortable to tap across width */
+  .novel-showcase-card .btn {
+    width: 100%;
   }
+
   .classics-grid {
     grid-template-columns: 1fr;
-    gap: 46px;
+    gap: 48px;
+  }
+
+  .card-cover {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .card-content {
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  /* Compact mobile header */
+  .header-inner {
+    flex-direction: column;
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  nav.primary-nav ul {
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .hero {
+    padding: 60px 0 44px;
+  }
+
+  .hero-actions {
+    gap: 18px;
+  }
+
+  .classics-header {
+    padding: 64px 0 40px;
+  }
+
+  .classics-filter-bar {
+    gap: 12px 18px;
   }
 }
