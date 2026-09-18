@@ -1,24 +1,16 @@
 /* ============================================================
-   Queen Usman — Literary Editorial Architecture
-   Inspired by The Reader Life
+   Queen Usman — Strict Two-Color Monochrome
+   Palette: Pure Paper & Pure Ink
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg-main: #FAF8F5;          /* Warm linen leaf */
-  --bg-card: #FFFFFF;          /* Elevated surface */
-  --bg-subtle: #F3EFE8;        /* Soft sand container */
-  --text-ink: #191715;         /* Deep editorial black */
-  --text-muted: #706B63;       /* Warm stone */
-  --text-light: #948E84;       /* Subtle folios & captions */
-  --border-hairline: #E8E2D8;  /* Crisp page rules */
-  --accent: #2C3830;           /* Deep botanical slate */
+  --paper: #FBF9F5;   /* Surface 1 */
+  --ink: #111111;     /* Surface 2 */
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-  
-  --shadow-book: 0 14px 34px rgba(25, 23, 21, 0.08), 0 2px 6px rgba(25, 23, 21, 0.04);
 }
 
 * {
@@ -32,8 +24,8 @@ html {
 }
 
 body {
-  background-color: var(--bg-main);
-  color: var(--text-ink);
+  background-color: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.7;
@@ -41,11 +33,11 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--ink);
   text-decoration: none;
 }
 
-/* Layout Containers */
+/* Layout Shells */
 .wrap {
   max-width: 720px;
   margin: 0 auto;
@@ -60,8 +52,8 @@ a {
 
 /* Header & Navigation */
 header.site-header {
-  border-bottom: 1px solid var(--border-hairline);
-  background: var(--bg-main);
+  border-bottom: 1px solid var(--ink);
+  background-color: var(--paper);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -79,8 +71,8 @@ header.site-header {
 .site-name {
   font-family: var(--font-serif);
   font-size: 22px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -91,38 +83,39 @@ nav.primary-nav ul {
 }
 
 nav.primary-nav a {
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  transition: color 0.2s ease;
+  color: var(--ink);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
 }
 
 nav.primary-nav a:hover,
 nav.primary-nav a[aria-current="page"] {
-  color: var(--text-ink);
+  border-bottom: 1px solid var(--ink);
 }
 
 /* Hero Section */
 .hero {
-  padding: 100px 0 80px;
+  padding: 110px 0 88px;
   text-align: center;
 }
 
 .hero-name {
   font-family: var(--font-serif);
-  font-size: clamp(48px, 7vw, 76px);
+  font-size: clamp(48px, 7.5vw, 80px);
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.05;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .hero-line {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(21px, 2.8vw, 27px);
-  color: var(--text-muted);
+  font-size: clamp(21px, 2.8vw, 28px);
   max-width: 28ch;
   margin: 0 auto 36px;
   line-height: 1.4;
@@ -136,64 +129,59 @@ nav.primary-nav a[aria-current="page"] {
 
 .hero-actions a {
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-hairline);
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
   padding-bottom: 4px;
-  transition: all 0.2s ease;
 }
 
 .hero-actions a:hover {
-  color: var(--text-ink);
-  border-color: var(--text-ink);
+  opacity: 0.6;
 }
 
 /* Sections */
 section {
-  padding: 88px 0;
-  border-top: 1px solid var(--border-hairline);
+  padding: 92px 0;
+  border-top: 1px solid var(--ink);
 }
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 20px;
+  color: var(--ink);
+  margin-bottom: 24px;
   display: block;
 }
 
-/* Book Showcase (Editorial Card) */
+/* Novel Showcase Card */
 .novel-showcase-card {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 270px 1fr;
   gap: 60px;
   align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-hairline);
+  background: var(--paper);
+  border: 1px solid var(--ink);
   padding: 56px 48px;
-  box-shadow: var(--shadow-book);
 }
 
 .book-leaf-preview {
   width: 100%;
   aspect-ratio: 2 / 3;
-  background: var(--bg-main);
-  border: 1px solid var(--border-hairline);
+  background: var(--paper);
+  border: 1px solid var(--ink);
   padding: 28px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .book-leaf-tag {
   font-size: 9px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--text-light);
 }
 
 .book-leaf-title {
@@ -205,9 +193,8 @@ section {
 
 .book-leaf-author {
   font-size: 10px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
 }
 
 .novel-title {
@@ -219,57 +206,71 @@ section {
 }
 
 .novel-meta {
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
 .novel-copy p {
   font-family: var(--font-serif);
   font-size: 20px;
-  line-height: 1.6;
-  color: var(--text-ink);
+  line-height: 1.65;
   margin-bottom: 16px;
 }
 
 .novel-support {
   font-size: 14px;
-  color: var(--text-muted);
+  line-height: 1.6;
   margin-bottom: 32px;
   max-width: 48ch;
 }
 
+/* Two-Tone Buttons */
 .btn {
   display: inline-block;
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background: var(--accent);
+  color: var(--paper);
+  background-color: var(--ink);
+  border: 1px solid var(--ink);
   padding: 14px 28px;
-  border-radius: 2px;
-  transition: opacity 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .btn:hover {
-  opacity: 0.88;
+  background-color: var(--paper);
+  color: var(--ink);
 }
 
-/* Why This Story */
+.btn-ghost {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 4px;
+  margin-top: 36px;
+}
+
+.btn-ghost:hover {
+  opacity: 0.6;
+}
+
+/* Pull Quotes & Copy */
 .pull-quote {
   font-family: var(--font-serif);
   font-size: clamp(26px, 3.2vw, 34px);
   font-style: italic;
   line-height: 1.35;
-  color: var(--text-ink);
   margin-bottom: 32px;
 }
 
 .body-copy p {
   font-size: 16px;
-  color: var(--text-muted);
+  line-height: 1.75;
   margin-bottom: 18px;
 }
 
@@ -277,18 +278,17 @@ section {
   font-family: var(--font-serif);
   font-size: 19px;
   font-style: italic;
-  color: var(--text-ink);
   margin: 24px 0;
 }
 
-/* Magazine Essay Index */
+/* Single-Line Essay Archive */
 .essay-list {
   list-style: none;
 }
 
 .essay-item {
   padding: 32px 0;
-  border-bottom: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--ink);
 }
 
 .essay-item:first-child {
@@ -296,10 +296,9 @@ section {
 }
 
 .essay-meta {
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: 10px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-light);
   margin-bottom: 8px;
 }
 
@@ -311,46 +310,37 @@ section {
 }
 
 .essay-excerpt {
-  color: var(--text-muted);
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 14px;
 }
 
 .essay-read {
   font-size: 11px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-ink);
-  border-bottom: 1px solid var(--text-ink);
+  border-bottom: 1px solid var(--ink);
   padding-bottom: 2px;
 }
 
-.btn-ghost {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-ink);
-  border-bottom: 1px solid var(--text-ink);
-  padding-bottom: 4px;
-  margin-top: 36px;
+.essay-read:hover {
+  opacity: 0.6;
 }
 
-/* Minimalist Footer */
+/* Minimal Footer */
 footer.site-footer {
-  border-top: 1px solid var(--border-hairline);
-  padding: 48px 0;
+  border-top: 1px solid var(--ink);
+  padding: 44px 0;
   text-align: center;
 }
 
 .footer-copyright {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--text-light);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-/* Mobile Responsive */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .novel-showcase-card {
     grid-template-columns: 1fr;
@@ -358,10 +348,10 @@ footer.site-footer {
     gap: 36px;
   }
   .book-leaf-preview {
-    max-width: 200px;
+    max-width: 210px;
     margin: 0 auto;
   }
   .hero {
-    padding: 64px 0 48px;
+    padding: 72px 0 52px;
   }
 }
