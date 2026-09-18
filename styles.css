@@ -1,19 +1,24 @@
 /* ============================================================
-   Queen Usman — Literary Editorial System
-   Palette: Warm Ivory, Ink, Warm Grey, Soft Stone & Muted Wine
+   Queen Usman — Literary Editorial Architecture
+   Inspired by The Reader Life
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg-ivory: #F3EFE7;         /* Warm ivory ground */
-  --text-ink: #171717;         /* Editorial ink typography */
-  --text-muted: #68635C;       /* Warm grey subtext */
-  --border-stone: #D8D1C5;     /* Soft stone structural rules */
-  --accent-wine: #6E2633;      /* Muted wine (reserved for rare touchpoints) */
+  --bg-main: #FAF8F5;          /* Warm linen leaf */
+  --bg-card: #FFFFFF;          /* Elevated surface */
+  --bg-subtle: #F3EFE8;        /* Soft sand container */
+  --text-ink: #191715;         /* Deep editorial black */
+  --text-muted: #706B63;       /* Warm stone */
+  --text-light: #948E84;       /* Subtle folios & captions */
+  --border-hairline: #E8E2D8;  /* Crisp page rules */
+  --accent: #2C3830;           /* Deep botanical slate */
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  
+  --shadow-book: 0 14px 34px rgba(25, 23, 21, 0.08), 0 2px 6px rgba(25, 23, 21, 0.04);
 }
 
 * {
@@ -27,11 +32,11 @@ html {
 }
 
 body {
-  background-color: var(--bg-ivory);
+  background-color: var(--bg-main);
   color: var(--text-ink);
   font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 1.75;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -40,8 +45,7 @@ a {
   text-decoration: none;
 }
 
-/* ---------- Layout Containers ---------- */
-
+/* Layout Containers */
 .wrap {
   max-width: 720px;
   margin: 0 auto;
@@ -54,11 +58,10 @@ a {
   padding: 0 28px;
 }
 
-/* ---------- Header & Navigation ---------- */
-
+/* Header & Navigation */
 header.site-header {
-  border-bottom: 1px solid var(--border-stone);
-  background-color: var(--bg-ivory);
+  border-bottom: 1px solid var(--border-hairline);
+  background: var(--bg-main);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -76,10 +79,9 @@ header.site-header {
 .site-name {
   font-family: var(--font-serif);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-ink);
 }
 
 nav.primary-nav ul {
@@ -89,45 +91,40 @@ nav.primary-nav ul {
 }
 
 nav.primary-nav a {
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding-bottom: 3px;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 nav.primary-nav a:hover,
 nav.primary-nav a[aria-current="page"] {
-  border-bottom-color: var(--accent-wine);
-  color: var(--accent-wine);
+  color: var(--text-ink);
 }
 
-/* ---------- Hero Section ---------- */
-
+/* Hero Section */
 .hero {
-  padding: 110px 0 88px;
+  padding: 100px 0 80px;
   text-align: center;
 }
 
 .hero-name {
   font-family: var(--font-serif);
-  font-size: clamp(50px, 7.5vw, 80px);
+  font-size: clamp(48px, 7vw, 76px);
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.05;
-  margin-bottom: 22px;
-  color: var(--text-ink);
+  margin-bottom: 20px;
 }
 
 .hero-line {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(21px, 2.8vw, 28px);
+  font-size: clamp(21px, 2.8vw, 27px);
   color: var(--text-muted);
   max-width: 28ch;
-  margin: 0 auto 38px;
+  margin: 0 auto 36px;
   line-height: 1.4;
 }
 
@@ -139,76 +136,64 @@ nav.primary-nav a[aria-current="page"] {
 
 .hero-actions a {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
-  border-bottom: 1px solid var(--border-stone);
+  border-bottom: 1px solid var(--border-hairline);
   padding-bottom: 4px;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .hero-actions a:hover {
-  color: var(--accent-wine);
-  border-color: var(--accent-wine);
+  color: var(--text-ink);
+  border-color: var(--text-ink);
 }
 
-/* ---------- Section Rhythm ---------- */
-
+/* Sections */
 section {
-  padding: 92px 0;
-  border-top: 1px solid var(--border-stone);
+  padding: 88px 0;
+  border-top: 1px solid var(--border-hairline);
 }
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 24px;
+  color: var(--text-light);
+  margin-bottom: 20px;
   display: block;
 }
 
-/* ---------- Featured Novel Showcase ---------- */
-
+/* Book Showcase (Editorial Card) */
 .novel-showcase-card {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: 64px;
+  gap: 60px;
   align-items: center;
-  background-color: var(--bg-ivory);
-  border: 1px solid var(--border-stone);
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
   padding: 56px 48px;
+  box-shadow: var(--shadow-book);
 }
 
 .book-leaf-preview {
   width: 100%;
   aspect-ratio: 2 / 3;
-  background-color: var(--bg-ivory);
-  border: 1px solid var(--border-stone);
-  padding: 30px 22px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-hairline);
+  padding: 28px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  position: relative;
-}
-
-/* Rare Wine Accent: Delicate spine hairline */
-.book-leaf-preview::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: var(--accent-wine);
+  box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .book-leaf-tag {
   font-size: 9px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-light);
 }
 
 .book-leaf-title {
@@ -216,12 +201,11 @@ section {
   font-size: 26px;
   font-weight: 500;
   line-height: 1.2;
-  color: var(--text-ink);
 }
 
 .book-leaf-author {
   font-size: 10px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -232,12 +216,11 @@ section {
   font-weight: 500;
   line-height: 1.1;
   margin-bottom: 8px;
-  color: var(--text-ink);
 }
 
 .novel-meta {
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 24px;
@@ -246,88 +229,66 @@ section {
 .novel-copy p {
   font-family: var(--font-serif);
   font-size: 20px;
-  line-height: 1.65;
-  margin-bottom: 16px;
+  line-height: 1.6;
   color: var(--text-ink);
+  margin-bottom: 16px;
 }
 
 .novel-support {
   font-size: 14px;
-  line-height: 1.65;
-  margin-bottom: 34px;
-  max-width: 48ch;
   color: var(--text-muted);
+  margin-bottom: 32px;
+  max-width: 48ch;
 }
 
-/* Rare Wine Accent: The Single Primary Entry Button */
 .btn {
   display: inline-block;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--bg-ivory);
-  background-color: var(--accent-wine);
-  border: 1px solid var(--accent-wine);
-  padding: 15px 30px;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  color: #FFFFFF;
+  background: var(--accent);
+  padding: 14px 28px;
+  border-radius: 2px;
+  transition: opacity 0.2s ease;
 }
 
 .btn:hover {
-  background-color: var(--text-ink);
-  border-color: var(--text-ink);
-  color: var(--bg-ivory);
+  opacity: 0.88;
 }
 
-.btn-ghost {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-ink);
-  border-bottom: 1px solid var(--border-stone);
-  padding-bottom: 4px;
-  margin-top: 36px;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.btn-ghost:hover {
-  color: var(--accent-wine);
-  border-color: var(--accent-wine);
-}
-
-/* ---------- Editorial Prose & Archives ---------- */
-
+/* Why This Story */
 .pull-quote {
   font-family: var(--font-serif);
   font-size: clamp(26px, 3.2vw, 34px);
   font-style: italic;
   line-height: 1.35;
-  margin-bottom: 32px;
   color: var(--text-ink);
+  margin-bottom: 32px;
 }
 
 .body-copy p {
   font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 18px;
   color: var(--text-muted);
+  margin-bottom: 18px;
 }
 
 .trait-list {
   font-family: var(--font-serif);
   font-size: 19px;
   font-style: italic;
-  margin: 26px 0;
   color: var(--text-ink);
+  margin: 24px 0;
 }
 
+/* Magazine Essay Index */
 .essay-list {
   list-style: none;
 }
 
 .essay-item {
-  padding: 34px 0;
-  border-bottom: 1px solid var(--border-stone);
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-hairline);
 }
 
 .essay-item:first-child {
@@ -335,10 +296,10 @@ section {
 }
 
 .essay-meta {
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-light);
   margin-bottom: 8px;
 }
 
@@ -347,59 +308,60 @@ section {
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 10px;
-  color: var(--text-ink);
 }
 
 .essay-excerpt {
-  font-size: 15px;
-  line-height: 1.65;
-  margin-bottom: 14px;
   color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 14px;
 }
 
 .essay-read {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-ink);
-  border-bottom: 1px solid var(--border-stone);
+  border-bottom: 1px solid var(--text-ink);
   padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.essay-read:hover {
-  color: var(--accent-wine);
-  border-color: var(--accent-wine);
+.btn-ghost {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-ink);
+  border-bottom: 1px solid var(--text-ink);
+  padding-bottom: 4px;
+  margin-top: 36px;
 }
 
-/* ---------- Minimal Footer ---------- */
-
+/* Minimalist Footer */
 footer.site-footer {
-  border-top: 1px solid var(--border-stone);
+  border-top: 1px solid var(--border-hairline);
   padding: 48px 0;
   text-align: center;
 }
 
 .footer-copyright {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
 }
 
-/* ---------- Responsive ---------- */
-
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .novel-showcase-card {
     grid-template-columns: 1fr;
-    padding: 34px 24px;
+    padding: 32px 24px;
     gap: 36px;
   }
   .book-leaf-preview {
-    max-width: 210px;
+    max-width: 200px;
     margin: 0 auto;
   }
   .hero {
-    padding: 72px 0 54px;
+    padding: 64px 0 48px;
   }
 }
