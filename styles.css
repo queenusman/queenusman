@@ -1,23 +1,19 @@
 /* ============================================================
-   Queen Usman — Tonal Monochrome: Cream & Ivory
-   Tone 1 (Luminous Ivory): #FAF7F0
-   Tone 2 (Deep Antique Cream): #E5DAC4
-   Structure (Toasted Vellum): #C8BBA2
-   Text (Warm Ink): #1C1917
+   The Reader Life Aesthetic System
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
 
 :root {
-  --ivory: #FAF7F0;        /* Light, airy paper tone */
-  --cream: #E5DAC4;        /* Rich, noticeable antique cream */
-  --cream-deep: #D5C7AD;   /* Accent cream for hover & buttons */
-  --vellum: #BAAA8E;       /* Visible stone border */
-  --ink: #1C1917;          /* Warm press ink */
-  --ink-soft: #635D55;     /* Muted secondary text */
+  --bg-paper: #F9F6F0;
+  --bg-card: #FCFAF7;
+  --text-ink: #211F1D;
+  --text-muted: #6E685F;
+  --border-rule: #E7E1D4;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --shadow-plate: 0 12px 32px rgba(33, 31, 29, 0.04), 0 2px 6px rgba(33, 31, 29, 0.02);
 }
 
 * {
@@ -26,13 +22,9 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  background-color: var(--ivory);
-  color: var(--ink);
+  background-color: var(--bg-paper);
+  color: var(--text-ink);
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.75;
@@ -44,7 +36,7 @@ a {
   text-decoration: none;
 }
 
-/* Layout Shells */
+/* Layout */
 .wrap {
   max-width: 720px;
   margin: 0 auto;
@@ -59,8 +51,8 @@ a {
 
 /* Header */
 header.site-header {
-  border-bottom: 1.5px solid var(--vellum);
-  background-color: var(--cream);
+  border-bottom: 1px solid var(--border-rule);
+  background-color: var(--bg-paper);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -69,7 +61,7 @@ header.site-header {
 .header-inner {
   max-width: 1040px;
   margin: 0 auto;
-  padding: 22px 28px;
+  padding: 24px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,8 +70,8 @@ header.site-header {
 .site-name {
   font-family: var(--font-serif);
   font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -91,31 +83,29 @@ nav.primary-nav ul {
 
 nav.primary-nav a {
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-muted);
   padding-bottom: 3px;
-  border-bottom: 1.5px solid transparent;
+  border-bottom: 1px solid transparent;
   transition: all 0.2s ease;
 }
 
 nav.primary-nav a:hover,
 nav.primary-nav a[aria-current="page"] {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
+  color: var(--text-ink);
+  border-bottom-color: var(--text-ink);
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
   padding: 110px 0 88px;
   text-align: center;
-  background-color: var(--ivory);
 }
 
 .hero-name {
   font-family: var(--font-serif);
-  font-size: clamp(50px, 7.5vw, 82px);
+  font-size: clamp(48px, 7.5vw, 76px);
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.05;
@@ -125,11 +115,11 @@ nav.primary-nav a[aria-current="page"] {
 .hero-line {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(21px, 2.8vw, 28px);
-  color: var(--ink-soft);
-  max-width: 28ch;
-  margin: 0 auto 38px;
-  line-height: 1.4;
+  font-size: clamp(21px, 2.6vw, 26px);
+  color: var(--text-muted);
+  max-width: 30ch;
+  margin: 0 auto 36px;
+  line-height: 1.45;
 }
 
 .hero-actions {
@@ -140,70 +130,63 @@ nav.primary-nav a[aria-current="page"] {
 
 .hero-actions a {
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
-  border-bottom: 1.5px solid var(--vellum);
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-rule);
   padding-bottom: 4px;
   transition: all 0.2s ease;
 }
 
 .hero-actions a:hover {
-  border-color: var(--ink);
+  color: var(--text-ink);
+  border-color: var(--text-ink);
 }
 
-/* Section Rhythms */
+/* Sections */
 section {
   padding: 92px 0;
-  border-top: 1.5px solid var(--vellum);
+  border-top: 1px solid var(--border-rule);
 }
 
 .eyebrow {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-muted);
   margin-bottom: 24px;
   display: block;
 }
 
-/* Contrast Novel Showcase Card */
-#current-novel {
-  background-color: var(--ivory);
-}
-
+/* Featured Novel Plate */
 .novel-showcase-card {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 64px;
+  grid-template-columns: 270px 1fr;
+  gap: 60px;
   align-items: center;
-  background-color: var(--cream);
-  border: 1.5px solid var(--vellum);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-rule);
   padding: 56px 48px;
+  box-shadow: var(--shadow-plate);
 }
 
-/* Pale Ivory Book Mockup resting on Deep Cream */
 .book-leaf-preview {
   width: 100%;
   aspect-ratio: 2 / 3;
-  background-color: var(--ivory);
-  border: 1.5px solid var(--vellum);
-  padding: 30px 22px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-rule);
+  padding: 28px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  box-shadow: 0 12px 28px rgba(28, 25, 23, 0.06);
 }
 
 .book-leaf-tag {
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-muted);
 }
 
 .book-leaf-title {
@@ -215,10 +198,9 @@ section {
 
 .book-leaf-author {
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-muted);
 }
 
 .novel-title {
@@ -231,10 +213,9 @@ section {
 
 .novel-meta {
   font-size: 12px;
-  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
@@ -248,47 +229,46 @@ section {
 .novel-support {
   font-size: 14px;
   line-height: 1.65;
-  margin-bottom: 34px;
+  margin-bottom: 32px;
   max-width: 48ch;
-  color: var(--ink-soft);
+  color: var(--text-muted);
 }
 
-/* Buttons */
+/* Editorial Button */
 .btn {
   display: inline-block;
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ivory);
-  background-color: var(--ink);
-  border: 1.5px solid var(--ink);
+  color: var(--bg-paper);
+  background-color: var(--text-ink);
+  border: 1px solid var(--text-ink);
   padding: 15px 30px;
   transition: all 0.2s ease;
 }
 
 .btn:hover {
-  background-color: var(--ivory);
-  color: var(--ink);
+  background-color: transparent;
+  color: var(--text-ink);
 }
 
 .btn-ghost {
   display: inline-block;
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  border-bottom: 1.5px solid var(--ink);
+  color: var(--text-ink);
+  border-bottom: 1px solid var(--border-rule);
   padding-bottom: 4px;
   margin-top: 36px;
-  transition: opacity 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .btn-ghost:hover {
-  opacity: 0.6;
+  border-color: var(--text-ink);
 }
 
-/* Editorial Quotes & Copy */
+/* Quotes & Prose */
 .pull-quote {
   font-family: var(--font-serif);
   font-size: clamp(26px, 3.2vw, 34px);
@@ -301,6 +281,7 @@ section {
   font-size: 16px;
   line-height: 1.8;
   margin-bottom: 18px;
+  color: var(--text-muted);
 }
 
 .trait-list {
@@ -308,16 +289,17 @@ section {
   font-size: 19px;
   font-style: italic;
   margin: 26px 0;
+  color: var(--text-ink);
 }
 
-/* Archive List */
+/* Essay Archive */
 .essay-list {
   list-style: none;
 }
 
 .essay-item {
   padding: 34px 0;
-  border-bottom: 1.5px solid var(--vellum);
+  border-bottom: 1px solid var(--border-rule);
 }
 
 .essay-item:first-child {
@@ -326,10 +308,9 @@ section {
 
 .essay-meta {
   font-size: 10px;
-  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-muted);
   margin-bottom: 8px;
 }
 
@@ -344,227 +325,49 @@ section {
   font-size: 15px;
   line-height: 1.65;
   margin-bottom: 14px;
-  color: var(--ink-soft);
+  color: var(--text-muted);
 }
 
 .essay-read {
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  border-bottom: 1.5px solid var(--ink);
+  color: var(--text-ink);
+  border-bottom: 1px solid var(--border-rule);
   padding-bottom: 2px;
-  transition: opacity 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .essay-read:hover {
-  opacity: 0.6;
+  border-color: var(--text-ink);
 }
 
-/* Classics Reading Room */
-.classics-header {
-  padding: 100px 0 60px;
-  text-align: center;
-  background-color: var(--cream);
-  border-bottom: 1.5px solid var(--vellum);
-}
-
-.classics-title {
-  font-family: var(--font-serif);
-  font-size: clamp(38px, 5.5vw, 60px);
-  font-weight: 400;
-  line-height: 1.1;
-  margin-bottom: 18px;
-}
-
-.classics-deck {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(18px, 2.4vw, 22px);
-  color: var(--ink-soft);
-  max-width: 32ch;
-  margin: 0 auto 40px;
-  line-height: 1.45;
-}
-
-.classics-filter-bar {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 24px;
-  padding-top: 24px;
-  border-top: 1.5px solid var(--vellum);
-}
-
-.filter-item {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  cursor: pointer;
-  padding-bottom: 4px;
-  border-bottom: 1.5px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.filter-item:hover,
-.filter-item.active {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
-}
-
-.classics-shelf {
-  padding: 80px 0 100px;
-  background-color: var(--ivory);
-}
-
-.classics-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px 36px;
-}
-
-.classic-card {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Card Plate in Deep Cream resting on Ivory */
-.card-cover {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  background-color: var(--cream);
-  border: 1.5px solid var(--vellum);
-  padding: 30px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
-  box-shadow: 0 10px 24px rgba(28, 25, 23, 0.05);
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.classic-card:hover .card-cover {
-  transform: translateY(-4px);
-  background-color: var(--cream-deep);
-}
-
-.card-cover-era {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.card-cover-title {
-  font-family: var(--font-serif);
-  font-size: 23px;
-  font-weight: 500;
-  line-height: 1.25;
-}
-
-.card-cover-author {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.card-content {
-  padding-top: 24px;
-}
-
-.card-meta {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  display: block;
-  margin-bottom: 6px;
-}
-
-.card-title {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 2px;
-}
-
-.card-author {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-soft);
-  margin-bottom: 12px;
-}
-
-.card-note {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-}
-
-.card-link {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  border-bottom: 1.5px solid var(--ink);
-  padding-bottom: 2px;
-  display: inline-block;
-  transition: opacity 0.2s ease;
-}
-
-.card-link:hover {
-  opacity: 0.6;
-}
-
-/* Deep Cream Grounding Footer */
+/* Footer */
 footer.site-footer {
-  border-top: 1.5px solid var(--vellum);
-  background-color: var(--cream);
+  border-top: 1px solid var(--border-rule);
   padding: 48px 0;
   text-align: center;
 }
 
 .footer-copyright {
   font-size: 11px;
-  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-muted);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 960px) {
-  .classics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
   .novel-showcase-card {
     grid-template-columns: 1fr;
     padding: 34px 24px;
     gap: 36px;
   }
-  .book-leaf-preview,
-  .card-cover {
+  .book-leaf-preview {
     max-width: 210px;
     margin: 0 auto;
   }
-  .hero,
-  .classics-header {
+  .hero {
     padding: 72px 0 54px;
-  }
-  .classics-grid {
-    grid-template-columns: 1fr;
-    gap: 44px;
   }
 }
