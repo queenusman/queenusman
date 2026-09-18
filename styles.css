@@ -1,19 +1,22 @@
 /* ============================================================
-   The Reader Life Aesthetic System
+   Queen Usman — Editorial Luxury Architecture
+   Palette: Warm Alabaster (#F9F8F6) | Deep Onyx (#1A1A1A) | Burnished Amber (#C5A059)
+   Role: Fine-Press Literary & Editorial Showcase
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-paper: #F9F6F0;
-  --bg-card: #FCFAF7;
-  --text-ink: #211F1D;
-  --text-muted: #6E685F;
-  --border-rule: #E7E1D4;
+  --alabaster: #F9F8F6;       /* Surface ground */
+  --onyx: #1A1A1A;            /* Primary editorial ink */
+  --amber: #C5A059;           /* Burnished amber luxury accent */
+  --muted-stone: #78736B;     /* Secondary editorial text */
+  --border-hairline: #E6E1D8; /* Delicate bookbinding rules */
+  --surface-card: #FFFFFF;    /* Elevated paper surface */
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-  --shadow-plate: 0 12px 32px rgba(33, 31, 29, 0.04), 0 2px 6px rgba(33, 31, 29, 0.02);
+  --shadow-plate: 0 16px 40px rgba(26, 26, 26, 0.05), 0 2px 6px rgba(26, 26, 26, 0.02);
 }
 
 * {
@@ -22,12 +25,16 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: var(--bg-paper);
-  color: var(--text-ink);
+  background-color: var(--alabaster);
+  color: var(--onyx);
   font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 1.75;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -36,30 +43,30 @@ a {
   text-decoration: none;
 }
 
-/* Layout */
+/* Containers */
 .wrap {
-  max-width: 720px;
+  max-width: 740px;
   margin: 0 auto;
   padding: 0 28px;
 }
 
 .wrap-wide {
-  max-width: 1040px;
+  max-width: 1060px;
   margin: 0 auto;
   padding: 0 28px;
 }
 
-/* Header */
+/* Header & Navigation */
 header.site-header {
-  border-bottom: 1px solid var(--border-rule);
-  background-color: var(--bg-paper);
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--alabaster);
   position: sticky;
   top: 0;
   z-index: 50;
 }
 
 .header-inner {
-  max-width: 1040px;
+  max-width: 1060px;
   margin: 0 auto;
   padding: 24px 28px;
   display: flex;
@@ -69,153 +76,170 @@ header.site-header {
 
 .site-name {
   font-family: var(--font-serif);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--onyx);
 }
 
 nav.primary-nav ul {
   display: flex;
   list-style: none;
-  gap: 28px;
+  gap: 32px;
 }
 
 nav.primary-nav a {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  padding-bottom: 3px;
+  color: var(--muted-stone);
+  padding-bottom: 4px;
   border-bottom: 1px solid transparent;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 nav.primary-nav a:hover,
 nav.primary-nav a[aria-current="page"] {
-  color: var(--text-ink);
-  border-bottom-color: var(--text-ink);
+  color: var(--onyx);
+  border-bottom-color: var(--amber);
 }
 
-/* Hero */
+/* Hero Section */
 .hero {
-  padding: 110px 0 88px;
+  padding: 120px 0 92px;
   text-align: center;
 }
 
 .hero-name {
   font-family: var(--font-serif);
-  font-size: clamp(48px, 7.5vw, 76px);
+  font-size: clamp(52px, 8vw, 84px);
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.05;
   margin-bottom: 22px;
+  color: var(--onyx);
 }
 
 .hero-line {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(21px, 2.6vw, 26px);
-  color: var(--text-muted);
+  font-size: clamp(22px, 3vw, 29px);
+  color: var(--muted-stone);
   max-width: 30ch;
-  margin: 0 auto 36px;
+  margin: 0 auto 40px;
   line-height: 1.45;
 }
 
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: 36px;
 }
 
 .hero-actions a {
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-rule);
+  color: var(--muted-stone);
+  border-bottom: 1px solid var(--border-hairline);
   padding-bottom: 4px;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .hero-actions a:hover {
-  color: var(--text-ink);
-  border-color: var(--text-ink);
+  color: var(--amber);
+  border-color: var(--amber);
 }
 
 /* Sections */
 section {
-  padding: 92px 0;
-  border-top: 1px solid var(--border-rule);
+  padding: 96px 0;
+  border-top: 1px solid var(--border-hairline);
 }
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--amber);
+  font-weight: 600;
   margin-bottom: 24px;
   display: block;
 }
 
-/* Featured Novel Plate */
+/* Novel Showcase Card */
 .novel-showcase-card {
   display: grid;
-  grid-template-columns: 270px 1fr;
-  gap: 60px;
+  grid-template-columns: 290px 1fr;
+  gap: 64px;
   align-items: center;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-rule);
-  padding: 56px 48px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  padding: 58px 50px;
   box-shadow: var(--shadow-plate);
 }
 
 .book-leaf-preview {
   width: 100%;
   aspect-ratio: 2 / 3;
-  background-color: var(--bg-paper);
-  border: 1px solid var(--border-rule);
-  padding: 28px 20px;
+  background-color: var(--alabaster);
+  border: 1px solid var(--border-hairline);
+  padding: 32px 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  position: relative;
+}
+
+/* Burnished Amber Spine Hairline */
+.book-leaf-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--amber);
 }
 
 .book-leaf-tag {
   font-size: 9px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--muted-stone);
 }
 
 .book-leaf-title {
   font-family: var(--font-serif);
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 500;
   line-height: 1.2;
+  color: var(--onyx);
 }
 
 .book-leaf-author {
   font-size: 10px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--muted-stone);
 }
 
 .novel-title {
   font-family: var(--font-serif);
-  font-size: clamp(34px, 4vw, 44px);
+  font-size: clamp(36px, 4.2vw, 48px);
   font-weight: 500;
   line-height: 1.1;
   margin-bottom: 8px;
+  color: var(--onyx);
 }
 
 .novel-meta {
   font-size: 12px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--muted-stone);
   margin-bottom: 24px;
 }
 
@@ -224,72 +248,76 @@ section {
   font-size: 20px;
   line-height: 1.65;
   margin-bottom: 16px;
+  color: var(--onyx);
 }
 
 .novel-support {
   font-size: 14px;
   line-height: 1.65;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   max-width: 48ch;
-  color: var(--text-muted);
+  color: var(--muted-stone);
 }
 
-/* Editorial Button */
+/* Luxury Action Buttons */
 .btn {
   display: inline-block;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--bg-paper);
-  background-color: var(--text-ink);
-  border: 1px solid var(--text-ink);
-  padding: 15px 30px;
-  transition: all 0.2s ease;
+  color: #FFFFFF;
+  background-color: var(--onyx);
+  border: 1px solid var(--onyx);
+  padding: 16px 32px;
+  transition: all 0.25s ease;
 }
 
 .btn:hover {
-  background-color: transparent;
-  color: var(--text-ink);
+  background-color: var(--amber);
+  border-color: var(--amber);
+  color: #FFFFFF;
 }
 
 .btn-ghost {
   display: inline-block;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-ink);
-  border-bottom: 1px solid var(--border-rule);
+  color: var(--onyx);
+  border-bottom: 1px solid var(--border-hairline);
   padding-bottom: 4px;
   margin-top: 36px;
-  transition: border-color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .btn-ghost:hover {
-  border-color: var(--text-ink);
+  color: var(--amber);
+  border-color: var(--amber);
 }
 
-/* Quotes & Prose */
+/* Prose & Typography */
 .pull-quote {
   font-family: var(--font-serif);
-  font-size: clamp(26px, 3.2vw, 34px);
+  font-size: clamp(26px, 3.4vw, 36px);
   font-style: italic;
   line-height: 1.35;
   margin-bottom: 32px;
+  color: var(--onyx);
 }
 
 .body-copy p {
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.85;
   margin-bottom: 18px;
-  color: var(--text-muted);
+  color: var(--muted-stone);
 }
 
 .trait-list {
   font-family: var(--font-serif);
-  font-size: 19px;
+  font-size: 20px;
   font-style: italic;
-  margin: 26px 0;
-  color: var(--text-ink);
+  margin: 28px 0;
+  color: var(--onyx);
 }
 
 /* Essay Archive */
@@ -298,8 +326,8 @@ section {
 }
 
 .essay-item {
-  padding: 34px 0;
-  border-bottom: 1px solid var(--border-rule);
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border-hairline);
 }
 
 .essay-item:first-child {
@@ -308,66 +336,324 @@ section {
 
 .essay-meta {
   font-size: 10px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--amber);
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .essay-title {
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 500;
   margin-bottom: 10px;
+  color: var(--onyx);
 }
 
 .essay-excerpt {
   font-size: 15px;
-  line-height: 1.65;
-  margin-bottom: 14px;
-  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  color: var(--muted-stone);
 }
 
 .essay-read {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-ink);
-  border-bottom: 1px solid var(--border-rule);
+  color: var(--onyx);
+  border-bottom: 1px solid var(--border-hairline);
   padding-bottom: 2px;
-  transition: border-color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .essay-read:hover {
-  border-color: var(--text-ink);
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+/* Classics Reading Shelf */
+.classics-header {
+  padding: 110px 0 64px;
+  text-align: center;
+}
+
+.classics-title {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 5.8vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--onyx);
+  margin-bottom: 18px;
+}
+
+.classics-deck {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(19px, 2.5vw, 23px);
+  color: var(--muted-stone);
+  max-width: 32ch;
+  margin: 0 auto 44px;
+  line-height: 1.45;
+}
+
+.classics-filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.filter-item {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-stone);
+  cursor: pointer;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.filter-item:hover,
+.filter-item.active {
+  color: var(--onyx);
+  border-bottom-color: var(--amber);
+}
+
+.classics-shelf {
+  padding: 88px 0 110px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.classics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 52px 38px;
+}
+
+.classic-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  padding: 32px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-plate);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--amber);
+}
+
+.classic-card:hover .card-cover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(26, 26, 26, 0.08);
+}
+
+.card-cover-era {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-stone);
+}
+
+.card-cover-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--onyx);
+}
+
+.card-cover-author {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-stone);
+}
+
+.card-content {
+  padding-top: 24px;
+}
+
+.card-meta {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--onyx);
+  margin-bottom: 2px;
+}
+
+.card-author {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--muted-stone);
+  margin-bottom: 12px;
+}
+
+.card-note {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted-stone);
+  margin-bottom: 18px;
+}
+
+.card-link {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--onyx);
+  border-bottom: 1px solid var(--border-hairline);
+  padding-bottom: 2px;
+  display: inline-block;
+  transition: all 0.25s ease;
+}
+
+.card-link:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+/* Fiction Page Elements */
+.fiction-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.book-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  text-align: center;
+  padding: 24px;
+  box-shadow: var(--shadow-plate);
+}
+
+.fiction-hook {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 23px;
+  line-height: 1.5;
+  margin: 24px 0 34px;
+  color: var(--onyx);
+}
+
+.fiction-block {
+  margin-bottom: 48px;
+}
+
+.fiction-block h3 {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.fiction-block p {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  max-width: 60ch;
+  color: var(--muted-stone);
+}
+
+.questions-list {
+  list-style: none;
+}
+
+.questions-list li {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.5;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border-hairline);
+  color: var(--onyx);
 }
 
 /* Footer */
 footer.site-footer {
-  border-top: 1px solid var(--border-rule);
-  padding: 48px 0;
+  border-top: 1px solid var(--border-hairline);
+  padding: 52px 0;
   text-align: center;
+  background-color: var(--alabaster);
 }
 
 .footer-copyright {
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--muted-stone);
 }
 
 /* Responsive */
+@media (max-width: 960px) {
+  .classics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .novel-showcase-card {
+  .novel-showcase-card,
+  .fiction-grid {
     grid-template-columns: 1fr;
-    padding: 34px 24px;
+    padding: 36px 24px;
     gap: 36px;
   }
-  .book-leaf-preview {
+  .book-leaf-preview,
+  .card-cover {
     max-width: 210px;
     margin: 0 auto;
   }
-  .hero {
-    padding: 72px 0 54px;
+  .hero,
+  .classics-header {
+    padding: 76px 0 54px;
+  }
+  .classics-grid {
+    grid-template-columns: 1fr;
+    gap: 46px;
   }
 }
