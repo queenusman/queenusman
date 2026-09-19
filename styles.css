@@ -645,3 +645,213 @@ footer.site-footer {
     gap: 12px 18px;
   }
 }
+
+/* ============================================================
+   V. E. Schwab-Inspired "Journey" & Press Architecture
+   ============================================================ */
+
+/* Hero */
+.about-hero {
+  padding: 100px 0 68px;
+  text-align: center;
+}
+
+.about-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 7.5vw, 68px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--onyx);
+  margin-bottom: 22px;
+}
+
+.about-hero-deck {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(19px, 3.8vw, 25px);
+  color: var(--muted-stone);
+  max-width: 32ch;
+  margin: 0 auto;
+  line-height: 1.45;
+}
+
+/* Chapters Timeline */
+.journey-section {
+  padding: 80px 0 100px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.journey-chapter {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border-hairline);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.journey-chapter:first-child {
+  padding-top: 0;
+}
+
+.journey-chapter:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.chapter-header {
+  position: sticky;
+  top: 100px;
+}
+
+.chapter-num {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--onyx);
+}
+
+.chapter-body p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--muted-stone);
+  margin-bottom: 20px;
+}
+
+.chapter-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Press Kit Section */
+.press-section {
+  padding: 88px 0;
+  background-color: var(--surface-card);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.press-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 400;
+  margin-bottom: 40px;
+  color: var(--onyx);
+}
+
+.press-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.press-card {
+  background-color: var(--alabaster);
+  border: 1px solid var(--border-hairline);
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.press-card-tag {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.press-card-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: var(--onyx);
+}
+
+.press-card-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted-stone);
+}
+
+/* Inquiries Section */
+.inquiries-section {
+  padding: 92px 0 110px;
+  text-align: center;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.inquiries-title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 5.5vw, 46px);
+  font-weight: 400;
+  margin-bottom: 40px;
+  color: var(--onyx);
+}
+
+.inquiries-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  text-align: left;
+  margin-bottom: 48px;
+}
+
+.inquiry-item {
+  border-top: 1px solid var(--border-hairline);
+  padding-top: 20px;
+}
+
+.inquiry-item h4 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--onyx);
+}
+
+.inquiry-item p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted-stone);
+}
+
+/* Mobile Responsiveness for About Page */
+@media (max-width: 768px) {
+  .journey-chapter {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 44px 0;
+  }
+
+  .chapter-header {
+    position: static;
+  }
+
+  .press-grid,
+  .inquiries-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .press-card {
+    padding: 28px 22px;
+  }
+
+  .inquiries-section .btn {
+    width: 100%;
+  }
+}
