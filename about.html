@@ -1,457 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>About — Queen Usman</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#1c1a17;
-    --ink-soft:#2c2925;
-    --ivory:#f4efe6;
-    --paper:#ece5d8;
-    --gray:#8d867a;
-    --accent:#7a3428;
-    --rule: rgba(28,26,23,0.14);
-    --rule-on-dark: rgba(244,239,230,0.16);
-    --maxw: 1180px;
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  *{box-sizing:inherit;}
-  html{scroll-padding-top: 90px;}
-  html,body{height:auto;}
-  body{
-    margin:0;
-    background: var(--ivory);
-    color: var(--ink);
-    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
-    font-size: 17px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  img{max-width:100%; display:block;}
-  a{color:inherit;}
-  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
-  h1,h2,h3{ font-family:'Fraunces', Georgia, serif; font-weight:500; margin:0; letter-spacing: -0.01em; }
-  .eyebrow{
-    font-family:'Newsreader', Georgia, serif;
-    font-style: italic;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 12.5px;
-    color: var(--accent);
-    margin: 0 0 18px;
-  }
-  .placeholder{
-    border: 1px dashed rgba(28,26,23,0.35);
-    background: repeating-linear-gradient(135deg, rgba(28,26,23,0.05), rgba(28,26,23,0.05) 10px, transparent 10px, transparent 20px);
-    display:flex; align-items:center; justify-content:center;
-    text-align:center;
-    color: var(--gray);
-    font-family: system-ui, sans-serif;
-    font-size: 12.5px;
-    letter-spacing: 0.03em;
-    padding: 20px;
-  }
-  .placeholder span{max-width: 220px;}
-
-  /* ---------- NAV ---------- */
-  header.site{
-    position: sticky; top:0; z-index: 50;
-    background: rgba(244,239,230,0.92);
-    backdrop-filter: saturate(140%) blur(6px);
-    border-bottom: 1px solid var(--rule);
-    padding-top: env(safe-area-inset-top, 0px);
-  }
-  .nav-inner{
-    max-width: var(--maxw); margin:0 auto; padding: 18px 32px;
-    display:flex; align-items:center; justify-content:space-between; gap: 24px;
-  }
-  .logo{
-    font-family:'Fraunces', serif; font-size: 18px; letter-spacing: 0.06em;
-    text-decoration:none; text-transform: uppercase; white-space:nowrap;
-  }
-  nav.links{ display:flex; align-items:center; gap: 30px; flex-wrap: wrap; }
-  nav.links a{
-    text-decoration:none; font-family: system-ui, sans-serif;
-    font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink-soft); padding: 4px 0; border-bottom: 1px solid transparent;
-    transition: border-color .2s ease, color .2s ease;
-  }
-  nav.links a:hover, nav.links a:focus-visible{ color: var(--accent); border-color: var(--accent); }
-  .cta-pill{
-    font-family: system-ui, sans-serif; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration:none; color: var(--ivory); background: var(--ink);
-    padding: 10px 18px; border-radius: 999px; white-space:nowrap;
-    transition: background .2s ease;
-  }
-  .cta-pill:hover, .cta-pill:focus-visible{ background: var(--accent); }
-  .nav-toggle{ display:none; }
-
-  /* ---------- HERO ---------- */
-  .hero{ padding: 84px 0 96px; }
-  .hero-grid{
-    display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;
-  }
-  .hero h1{ font-size: clamp(32px, 4.4vw, 52px); line-height: 1.16; max-width: 15ch; }
-  .hero-portrait{ aspect-ratio: 4/5; width: 100%; }
-  .hero-portrait .placeholder{ height:100%; }
-
-  /* ---------- SECTION SPACING ---------- */
-  section{ padding: 88px 0; }
-  .rule-top{ border-top: 1px solid var(--rule); }
-
-  /* ---------- BIOGRAPHY ---------- */
-  .bio-grid{ display:grid; grid-template-columns: 0.6fr 1fr; gap: 64px; }
-  .bio-grid .label{
-    font-family: system-ui, sans-serif; font-size: 11.5px; letter-spacing:0.12em; text-transform: uppercase; color: var(--gray);
-  }
-  .bio-body p{ margin: 0 0 22px; max-width: 62ch; font-size: 18px; }
-  .bio-body p:last-child{ margin-bottom:0; }
-
-  /* ---------- CURRENT NOVEL ---------- */
-  .novel-section{ background: var(--ink); color: var(--ivory); }
-  .novel-section .eyebrow{ color: #c98f7f; }
-  .novel-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items:center; }
-  .novel-cover{ aspect-ratio: 2/3; max-width: 340px; }
-  .novel-cover .placeholder{ height:100%; border-color: var(--rule-on-dark); background: repeating-linear-gradient(135deg, rgba(244,239,230,0.06), rgba(244,239,230,0.06) 10px, transparent 10px, transparent 20px); color: rgba(244,239,230,0.55); }
-  .novel-title{ font-size: clamp(26px, 3.4vw, 38px); text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 10px; }
-  .novel-sub{ font-style: italic; color: rgba(244,239,230,0.7); margin-bottom: 28px; font-size: 17px; }
-  .novel-copy p{ margin: 0 0 18px; max-width: 52ch; font-size: 17.5px; }
-  .novel-cta{
-    display:inline-block; margin-top: 12px; text-decoration:none;
-    font-family: system-ui, sans-serif; font-size: 12px; letter-spacing:0.1em; text-transform:uppercase;
-    border-bottom: 1px solid rgba(244,239,230,0.5); padding-bottom: 4px;
-    transition: border-color .2s ease, opacity .2s ease;
-  }
-  .novel-cta:hover, .novel-cta:focus-visible{ border-color: var(--ivory); opacity: 0.85; }
-
-  /* ---------- QUESTIONS ---------- */
-  .q-head{ max-width: 640px; margin-bottom: 44px; }
-  .q-head h2{ font-size: clamp(24px, 3vw, 32px); margin-bottom: 10px; }
-  .q-head .sub{ color: var(--gray); font-style: italic; }
-  details.q{
-    border-top: 1px solid var(--rule);
-  }
-  details.q:last-of-type{ border-bottom: 1px solid var(--rule); }
-  details.q summary{
-    list-style: none; cursor:pointer;
-    display:flex; align-items:center; justify-content:space-between; gap: 20px;
-    padding: 22px 0; font-family:'Fraunces', serif; font-size: 18px; font-weight: 500;
-  }
-  details.q summary::-webkit-details-marker{ display:none; }
-  details.q summary .mark{
-    flex: none; width: 22px; height: 22px; position: relative;
-  }
-  details.q summary .mark::before, details.q summary .mark::after{
-    content:""; position:absolute; background: var(--ink); top:50%; left:50%;
-    transform: translate(-50%,-50%);
-  }
-  details.q summary .mark::before{ width: 14px; height: 1px; }
-  details.q summary .mark::after{ width: 1px; height: 14px; transition: transform .25s ease, opacity .25s ease; }
-  details.q[open] summary .mark::after{ transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
-  details.q .a{ padding: 0 0 26px; max-width: 66ch; color: var(--ink-soft); }
-  details.q summary:focus-visible{ outline: 2px solid var(--accent); outline-offset: 4px; }
-
-  /* ---------- VISUAL BREAK ---------- */
-  .visual-break{ padding: 0; }
-  .visual-break .placeholder{ height: clamp(280px, 42vw, 460px); border-left:0; border-right:0; border-radius:0; }
-
-  /* ---------- JOURNAL ---------- */
-  .journal-head{ display:flex; align-items:flex-end; justify-content:space-between; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
-  .journal-head h2{ font-size: clamp(24px, 3vw, 32px); }
-  .journal-head p{ color: var(--gray); max-width: 46ch; margin: 8px 0 0; }
-  .journal-link{
-    text-decoration:none; font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    border-bottom: 1px solid var(--ink); padding-bottom: 4px; white-space:nowrap;
-  }
-  .journal-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
-  .journal-card .thumb{ aspect-ratio: 4/3; margin-bottom: 18px; }
-  .journal-card .thumb .placeholder{ height:100%; font-size: 11px; }
-  .journal-card h3{ font-size: 18px; margin-bottom: 8px; line-height:1.3; }
-  .journal-card p{ margin:0; color: var(--gray); font-size: 15.5px; }
-
-  /* ---------- NEWSLETTER ---------- */
-  .newsletter{ background: var(--paper); }
-  .newsletter-inner{ max-width: 560px; }
-  .newsletter h2{ font-size: clamp(22px, 2.8vw, 28px); margin-bottom: 14px; }
-  .newsletter p{ color: var(--ink-soft); margin: 0 0 30px; max-width: 48ch; }
-  form.signup{ display:flex; gap: 14px; flex-wrap: wrap; }
-  form.signup input[type="email"]{
-    flex: 1 1 240px; min-width: 0;
-    background: transparent; border: none; border-bottom: 1px solid var(--ink);
-    padding: 10px 2px; font-family: 'Newsreader', serif; font-size: 16px; color: var(--ink);
-  }
-  form.signup input[type="email"]::placeholder{ color: var(--gray); }
-  form.signup input[type="email"]:focus-visible{ outline: none; border-bottom-color: var(--accent); }
-  form.signup button{
-    flex: none; background: var(--ink); color: var(--ivory); border: none; cursor:pointer;
-    padding: 12px 22px; border-radius: 999px;
-    font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    transition: background .2s ease;
-  }
-  form.signup button:hover, form.signup button:focus-visible{ background: var(--accent); }
-
-  /* ---------- CONTACT ---------- */
-  .contact-inner{ max-width: 560px; }
-  .contact-inner h2{ font-size: clamp(22px, 2.8vw, 28px); margin-bottom: 14px; }
-  .contact-inner p{ margin: 0 0 8px; color: var(--ink-soft); }
-  .contact-inner .email-placeholder{
-    display:inline-block; margin-top: 6px; font-style: italic; color: var(--gray);
-    border-bottom: 1px dashed rgba(28,26,23,0.35); padding-bottom: 2px;
-  }
-
-  /* ---------- FOOTER ---------- */
-  footer.site{ background: var(--ink); color: rgba(244,239,230,0.82); padding: 64px 0 40px; }
-  .footer-grid{ display:flex; justify-content:space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 40px; border-bottom: 1px solid var(--rule-on-dark); }
-  .footer-brand .logo{ color: var(--ivory); }
-  .footer-brand p{ margin: 10px 0 0; color: rgba(244,239,230,0.55); font-style: italic; max-width: 34ch; }
-  .footer-nav{ display:flex; flex-direction:column; gap: 10px; }
-  .footer-nav a{ text-decoration:none; font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,239,230,0.75); }
-  .footer-nav a:hover{ color: var(--ivory); }
-  .footer-bottom{ display:flex; justify-content:space-between; gap: 20px; flex-wrap: wrap; padding-top: 26px; font-family: system-ui, sans-serif; font-size: 12px; color: rgba(244,239,230,0.5); }
-  .footer-social a{ color: rgba(244,239,230,0.5); text-decoration:none; margin-left: 18px; }
-  .footer-social a:first-child{ margin-left:0; }
-  .footer-social a:hover{ color: var(--ivory); }
-  .missing-note{ font-style: italic; }
-
-  /* ---------- DARK MODE (viewer preference) ---------- */
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --ink:#f4efe6;
-      --ink-soft:#d9d2c4;
-      --ivory:#17140f;
-      --paper:#1e1a14;
-      --gray:#948c7d;
-      --rule: rgba(244,239,230,0.14);
-      --rule-on-dark: rgba(244,239,230,0.14);
-    }
-    body:not([data-theme="light"]) header.site{ background: rgba(23,20,15,0.92); }
-    body:not([data-theme="light"]) .novel-section{ background:#0e0c09; }
-    body:not([data-theme="light"]) footer.site{ background:#0e0c09; }
-    body:not([data-theme="light"]) .cta-pill{ color:#17140f; }
-    body:not([data-theme="light"]) form.signup button{ color:#17140f; }
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 880px){
-    .hero-grid, .bio-grid, .novel-grid{ grid-template-columns: 1fr; }
-    .hero-grid{ gap: 40px; }
-    .hero-portrait{ order:-1; max-width: 360px; }
-    .journal-grid{ grid-template-columns: 1fr 1fr; }
-    nav.links{ display:none; }
-  }
-  @media (max-width: 560px){
-    .wrap{ padding: 0 20px; }
-    .nav-inner{ padding: 16px 20px; }
-    .journal-grid{ grid-template-columns: 1fr; }
-    section{ padding: 64px 0; }
-    .hero{ padding: 56px 0 64px; }
-    form.signup{ flex-direction: column; align-items: stretch; }
-    form.signup button{ align-self: flex-start; }
-    .footer-bottom{ flex-direction: column; align-items:flex-start; }
-    .footer-social{ margin-top: 6px; }
-    .footer-social a{ margin-left:0; margin-right: 18px; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ transition: none !important; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Queen Usman — Novelist</title>
+  <meta name="description" content="Queen Usman is a novelist interested in how people become who they are. Author of Or So She Thought.">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="site">
-  <div class="nav-inner">
-    <a class="logo" href="#" aria-label="Queen Usman — Home">Queen Usman</a>
-    <nav class="links" aria-label="Primary">
-      <a href="#">Or So She Thought</a>
-      <a href="#">Norwyn</a>
-      <a href="#">The People</a>
-      <a href="#">The Questions</a>
-      <a href="#">Journal</a>
-      <a href="#" aria-current="page">About</a>
-    </nav>
-    <a class="cta-pill" href="#">Enter the Novel →</a>
-  </div>
-</header>
-
-<main>
-
-  <!-- 1. HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">About Queen Usman</p>
-        <h1>A novelist interested in how people become who they are.</h1>
-      </div>
-      <div class="hero-portrait">
-        <div class="placeholder"><span>PORTRAIT IMAGE — literary, editorial author photo. Provide file to replace.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. BIOGRAPHY -->
-  <section class="rule-top">
-    <div class="wrap bio-grid">
-      <div class="label">Biography</div>
-      <div class="bio-body">
-        <p>Queen Usman writes fiction about the things that shape people before they fully understand they are being shaped—family, desire, expectation, relationships, power, circumstance, and repetition.</p>
-        <p>Her work is interested in the space between what a person has been taught to want and what they eventually decide to want for themselves.</p>
-        <p>Her current novel, Or So She Thought, is set in 1990s Norwyn and follows Elizabeth, a young woman whose future has been carefully prepared for her. As the life she has always understood begins to become less certain, she is forced to consider a difficult question: how do you know what is yours when so much of you was formed by other people?</p>
-        <p>Her essays follow the questions her fiction leaves behind, looking at identity, relationships, autonomy, ambition, social influence, and the ordinary ways people become who they are.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. CURRENT NOVEL -->
-  <section class="novel-section">
-    <div class="wrap novel-grid">
-      <div class="novel-cover">
-        <div class="placeholder"><span>BOOK COVER — Or So She Thought. Provide file to replace.</span></div>
-      </div>
-      <div>
-        <p class="eyebrow">Current Novel</p>
-        <h2 class="novel-title">Or So She Thought</h2>
-        <p class="novel-sub">A psychological novel set in 1990s Norwyn.</p>
-        <div class="novel-copy">
-          <p>Elizabeth has spent her life learning how to live correctly.</p>
-          <p>Her future is arranged. Her responsibilities are clear. The life ahead of her appears settled.</p>
-          <p>Then she begins to wonder whether the things she wants were ever entirely hers to begin with.</p>
-        </div>
-        <a class="novel-cta" href="#">Explore the Novel →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. QUESTIONS -->
-  <section class="rule-top">
-    <div class="wrap">
-      <div class="q-head">
-        <h2>Questions</h2>
-        <p class="sub">The questions behind the work.</p>
-      </div>
-
-      <details class="q">
-        <summary><span>What do you write about?</span><span class="mark"></span></summary>
-        <div class="a">I write fiction about how people become who they are—what they inherit, learn, desire, obey, repeat, and eventually question.</div>
-      </details>
-
-      <details class="q">
-        <summary><span>Why Or So She Thought?</span><span class="mark"></span></summary>
-        <div class="a">The novel began with a question about choice: what does it mean to choose when the person doing the choosing has already been shaped by family, expectation, privilege, relationships, and circumstance?</div>
-      </details>
-
-      <details class="q">
-        <summary><span>Is the novel about escaping?</span><span class="mark"></span></summary>
-        <div class="a">Leaving is part of Elizabeth's story, but escape is not the answer the novel is interested in. The more difficult question is what a person carries with them after they leave.</div>
-      </details>
-
-      <details class="q">
-        <summary><span>Are your essays connected to your fiction?</span><span class="mark"></span></summary>
-        <div class="a">Yes. My fiction is where the questions become stories. My essays follow the questions those stories leave behind and examine them in ordinary life.</div>
-      </details>
-
-      <details class="q">
-        <summary><span>What does "how people become who they are" mean?</span><span class="mark"></span></summary>
-        <div class="a">I am interested in the point where something repeated becomes familiar, where familiarity becomes expectation, and where expectation can begin to feel like part of a person rather than something they learned.</div>
-      </details>
-    </div>
-  </section>
-
-  <!-- 5. VISUAL BREAK -->
-  <section class="visual-break">
-    <div class="placeholder"><span>FULL-WIDTH VISUAL — archival document, old photograph, or manuscript detail connected to Norwyn. Provide file to replace.</span></div>
-  </section>
-
-  <!-- 6. JOURNAL -->
-  <section>
-    <div class="wrap">
-      <div class="journal-head">
-        <div>
-          <p class="eyebrow" style="margin-bottom:6px;">From the Journal</p>
-          <h2>Notes from the making of a novel.</h2>
-          <p>Fragments, questions, discoveries, and occasional glimpses into the world of Or So She Thought.</p>
-        </div>
-        <a class="journal-link" href="#">Read the Journal →</a>
-      </div>
-      <div class="journal-grid">
-        <article class="journal-card">
-          <div class="thumb"><div class="placeholder"><span>IMAGE</span></div></div>
-          <h3>The Mended Blouse</h3>
-          <p>A note on one of the smallest scenes in the novel.</p>
-        </article>
-        <article class="journal-card">
-          <div class="thumb"><div class="placeholder"><span>IMAGE</span></div></div>
-          <h3>The Rules of Norwyn</h3>
-          <p>Building a society where nobody thinks of itself as oppressive.</p>
-        </article>
-        <article class="journal-card">
-          <div class="thumb"><div class="placeholder"><span>IMAGE</span></div></div>
-          <h3>What Elizabeth Carries With Her</h3>
-          <p>On the difference between leaving a place and leaving what it taught you.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. NEWSLETTER -->
-  <section class="newsletter">
-    <div class="wrap">
-      <div class="newsletter-inner">
-        <h2>Follow the story</h2>
-        <p>Occasional notes from the making of Or So She Thought, new writing, and other things worth reading.</p>
-        <form class="signup" onsubmit="return false;">
-          <label for="email" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Your email</label>
-          <input id="email" type="email" placeholder="Your email" required>
-          <button type="submit">Join the Journal →</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. CONTACT -->
-  <section class="rule-top">
-    <div class="wrap">
-      <div class="contact-inner">
-        <h2>Contact</h2>
-        <p>For literary, rights, interview, or professional inquiries:</p>
-        <span class="email-placeholder">[ EMAIL ADDRESS — provide the address to use here ]</span>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="logo" href="#">Queen Usman</a>
-        <p>Novelist interested in how people become who they are.</p>
-      </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="#">Or So She Thought</a>
-        <a href="#">Norwyn</a>
-        <a href="#">The People</a>
-        <a href="#">The Questions</a>
-        <a href="#">Journal</a>
-        <a href="#">About</a>
+  <!-- ============================================================
+       GLOBAL NAVIGATION (NOVELIST-FIRST)
+       ============================================================ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-name" href="index.html">Queen Usman</a>
+      <nav class="primary-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="https://queenusman.github.io/or-so-she-thought/">Or So She Thought</a></li>
+          <li><a href="#norwyn">Norwyn</a></li>
+          <li><a href="#the-people">The People</a></li>
+          <li><a href="#questions">The Questions</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+        </ul>
       </nav>
+      <div class="nav-action">
+        <a class="nav-cta" href="https://queenusman.github.io/or-so-she-thought/">Enter the Novel &rarr;</a>
+      </div>
     </div>
-    <div class="footer-bottom">
-      <span class="missing-note">Social links — none provided yet</span>
-      <span class="footer-social">
-        <!-- Add existing valid social links here, e.g.: <a href="https://instagram.com/...">Instagram</a> -->
-      </span>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1. HERO / INTRODUCTION
+         ============================================================ -->
+    <section class="about-hero">
+      <div class="wrap-wide">
+        <div class="hero-grid">
+          <div class="hero-text-block">
+            <span class="eyebrow">About Queen Usman</span>
+            <h1 class="hero-title">A novelist interested in how people become who they are.</h1>
+          </div>
+          
+          <div class="hero-portrait-frame">
+            <!-- Author Portrait Placeholder: Replace with your final photograph asset -->
+            <div class="portrait-plate">
+              <span class="plate-label">Queen Usman &mdash; Author Portrait</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. BIOGRAPHY
+         ============================================================ -->
+    <section class="bio-section">
+      <div class="wrap">
+        <div class="bio-prose">
+          <p>Queen Usman writes fiction about the things that shape people before they fully understand they are being shaped&mdash;family, desire, expectation, relationships, power, circumstance, and repetition.</p>
+          <p>Her work is interested in the space between what a person has been taught to want and what they eventually decide to want for themselves.</p>
+          <p>Her current novel, <em>Or So She Thought</em>, is set in 1990s Norwyn and follows Elizabeth, a young woman whose future has been carefully prepared for her. As the life she has always understood begins to become less certain, she is forced to consider a difficult question: how do you know what is yours when so much of you was formed by other people?</p>
+          <p>Her essays follow the questions her fiction leaves behind, looking at identity, relationships, autonomy, ambition, social influence, and the ordinary ways people become who they are.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. CURRENT NOVEL
+         ============================================================ -->
+    <section class="novel-feature-section" id="or-so-she-thought">
+      <div class="wrap-wide">
+        <div class="novel-feature-card">
+          <!-- Book Plate Element -->
+          <div class="book-plate">
+            <div class="book-plate-inner">
+              <span class="book-plate-era">Norwyn &middot; 1994</span>
+              <div class="book-plate-title">Or So She<br>Thought</div>
+              <span class="book-plate-author">Queen Usman</span>
+            </div>
+          </div>
+
+          <!-- Feature Text -->
+          <div class="novel-feature-content">
+            <span class="eyebrow">Current Novel</span>
+            <h2 class="novel-feature-title">OR SO SHE THOUGHT</h2>
+            <p class="novel-feature-sub">A psychological novel set in 1990s Norwyn.</p>
+            
+            <div class="novel-feature-copy">
+              <p>Elizabeth has spent her life learning how to live correctly.</p>
+              <p>Her future is arranged. Her responsibilities are clear. The life ahead of her appears settled.</p>
+              <p>Then she begins to wonder whether the things she wants were ever entirely hers to begin with.</p>
+            </div>
+
+            <a class="btn-primary" href="https://queenusman.github.io/or-so-she-thought/">Explore the Novel &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. QUESTIONS (KEYBOARD ACCESSIBLE ACCORDION)
+         ============================================================ -->
+    <section class="questions-section" id="questions">
+      <div class="wrap">
+        <div class="section-lead">
+          <h2 class="section-heading">QUESTIONS</h2>
+          <p class="section-subtitle">The questions behind the work.</p>
+        </div>
+
+        <div class="accordion-group">
+          
+          <details class="accordion-item" open>
+            <summary class="accordion-trigger">
+              <span>What do you write about?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="accordion-panel">
+              <p>I write fiction about how people become who they are&mdash;what they inherit, learn, desire, obey, repeat, and eventually question.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-trigger">
+              <span>Why Or So She Thought?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="accordion-panel">
+              <p>The novel began with a question about choice: what does it mean to choose when the person doing the choosing has already been shaped by family, expectation, privilege, relationships, and circumstance?</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-trigger">
+              <span>Is the novel about escaping?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="accordion-panel">
+              <p>Leaving is part of Elizabeth's story, but escape is not the answer the novel is interested in. The more difficult question is what a person carries with them after they leave.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-trigger">
+              <span>Are your essays connected to your fiction?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="accordion-panel">
+              <p>Yes. My fiction is where the questions become stories. My essays follow the questions those stories leave behind and examine them in ordinary life.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-trigger">
+              <span>What does &ldquo;how people become who they are&rdquo; mean?</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="accordion-panel">
+              <p>I am interested in the point where something repeated becomes familiar, where familiarity becomes expectation, and where expectation can begin to feel like part of a person rather than something they learned.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. VISUAL BREAK (NORWYN ARCHIVAL PLATE)
+         ============================================================ -->
+    <section class="visual-break-section" aria-label="Visual Archive">
+      <div class="visual-break-plate">
+        <div class="visual-break-annotation">
+          <span class="archive-ref">PLATE IV / RECORD 94-B</span>
+          <span class="archive-subject">Court Architecture &amp; Administrative Ledger &mdash; Norwyn Society</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. JOURNAL
+         ============================================================ -->
+    <section class="journal-section" id="journal">
+      <div class="wrap-wide">
+        <div class="section-lead">
+          <span class="eyebrow">From the Journal</span>
+          <h2 class="section-heading">Notes from the making of a novel.</h2>
+          <p class="journal-desc">Fragments, questions, discoveries, and occasional glimpses into the world of Or So She Thought.</p>
+        </div>
+
+        <div class="journal-grid">
+          
+          <article class="journal-card">
+            <span class="journal-tag">Scene Work</span>
+            <h3 class="journal-card-title">The Mended Blouse</h3>
+            <p class="journal-card-summary">A note on one of the smallest scenes in the novel.</p>
+            <a class="journal-link" href="#">Read Note &rarr;</a>
+          </article>
+
+          <article class="journal-card">
+            <span class="journal-tag">World &amp; Society</span>
+            <h3 class="journal-card-title">The Rules of Norwyn</h3>
+            <p class="journal-card-summary">Building a society where nobody thinks of itself as oppressive.</p>
+            <a class="journal-link" href="#">Read Note &rarr;</a>
+          </article>
+
+          <article class="journal-card">
+            <span class="journal-tag">Psychology</span>
+            <h3 class="journal-card-title">What Elizabeth Carries With Her</h3>
+            <p class="journal-card-summary">On the difference between leaving a place and leaving what it taught you.</p>
+            <a class="journal-link" href="#">Read Note &rarr;</a>
+          </article>
+
+        </div>
+
+        <div class="journal-action">
+          <a class="btn-text" href="#">Read the Journal &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. NEWSLETTER (LITERARY CORRESPONDENCE)
+         ============================================================ -->
+    <section class="newsletter-section">
+      <div class="wrap">
+        <div class="newsletter-inner">
+          <h2 class="newsletter-title">Follow the Story</h2>
+          <p class="newsletter-copy">Occasional notes from the making of Or So She Thought, new writing, and other things worth reading.</p>
+          
+          <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault();">
+            <input type="email" class="newsletter-input" placeholder="Your email" required aria-label="Your email">
+            <button type="submit" class="newsletter-btn">Join the Journal &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. CONTACT
+         ============================================================ -->
+    <section class="contact-section">
+      <div class="wrap">
+        <h2 class="contact-title">Contact</h2>
+        <p class="contact-copy">For literary, rights, interview, or professional inquiries:</p>
+        <p class="contact-channel"><a class="contact-link" href="mailto:contact@queenusman.com">contact@queenusman.com</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       9. FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="wrap-wide">
+      <div class="footer-top">
+        <div class="footer-identity">
+          <span class="footer-brand">Queen Usman</span>
+          <p class="footer-strapline">Novelist interested in how people become who they are.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <ul>
+            <li><a href="https://queenusman.github.io/or-so-she-thought/">Or So She Thought</a></li>
+            <li><a href="#norwyn">Norwyn</a></li>
+            <li><a href="#the-people">The People</a></li>
+            <li><a href="#questions">The Questions</a></li>
+            <li><a href="#journal">Journal</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2026 Queen Usman</p>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
