@@ -155,7 +155,6 @@ body[data-tone="taupe"] .media { background: #DCD3C6; }
 .hero__tag { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(1.6rem, 3vw, 2.4rem); margin-top: 18px; letter-spacing: .04em; }
 .hero__line { width: 40px; height: 1px; background: var(--champagne); margin: 36px 0 24px; }
 .hero__sub { max-width: 28em; margin-bottom: 40px; }
-.hero__sub .label { display: block; margin-bottom: 14px; }
 .hero__sub p { color: var(--ink-soft); }
 .hero__sub p + p { margin-top: 10px; }
 .hero__img { align-self: stretch; }
@@ -328,7 +327,6 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 const SITE = {
   name: "NĀDIRAH",
   tagline: "Rare, always.",
-  headline: "NOT MADE TO BLEND IN.",
   intro: [
     "NĀDIRAH was created for the beauty of being distinct.",
     "Through hand-beaded bags made in limited quantities, we create pieces that stand apart without asking for attention, bringing individuality to something you carry every day.",
@@ -409,7 +407,6 @@ function home() {
       <p class="hero__tag">${SITE.tagline}</p>
       <div class="hero__line" aria-hidden="true"></div>
       <div class="hero__sub">
-        <span class="label">${SITE.headline}</span>
         ${SITE.intro.map(line => `<p>${line}</p>`).join("")}
       </div>
       <div><a class="btn" href="#/collection">Shop the collection</a></div>
