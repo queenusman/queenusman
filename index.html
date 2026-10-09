@@ -169,20 +169,6 @@ a:hover > .media img, .card:hover .media img { transform: scale(1.025); }
 }
 @media (max-width: 899px) { .hero__img .media { aspect-ratio: 4 / 5; min-height: 0; height: auto; } }
 
-/* ---------- collection ---------- */
-.grid { display: grid; gap: 72px var(--gutter); }
-@media (min-width: 720px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .grid > :nth-child(even) { margin-top: 120px; }
-}
-.card { display: block; }
-.card .media { margin-bottom: 26px; }
-.card__meta { margin-bottom: 8px; }
-.card__name { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 3vw, 2.5rem); line-height: 1.1; margin-bottom: 14px; }
-.card__desc { color: var(--ink-soft); max-width: 26em; margin-bottom: 18px; }
-.card__price { font-family: var(--serif); font-size: 1.4rem; margin-bottom: 22px; }
-.empty { font-family: var(--serif); font-size: 1.5rem; color: var(--ink-soft); }
-
 /* ---------- product ---------- */
 .product { display: grid; gap: 40px; padding-top: 8px; padding-bottom: clamp(88px, 12vw, 180px); }
 .crumb { padding: 20px 0 8px; }
@@ -383,19 +369,6 @@ function media(img, cls, alt, eager) {
   return `<div class="media ${cls}">${tag}${ph}</div>`;
 }
 
-function card(p) {
-  const showPrice = p.status === "AVAILABLE";
-  return `
-  <a class="card" href="#/piece/${p.piece}">
-    ${media(p.images[0], "r-45", `${p.name}, front view`)}
-    <p class="label label--soft card__meta">${pieceLabel(p)}</p>
-    <h2 class="card__name">${p.name}</h2>
-    <p class="card__desc">${p.description}</p>
-    ${showPrice ? `<p class="card__price">${price(p)}</p>` : `<p class="status status--${statusKey(p)}" style="margin-bottom:22px">${p.status}</p>`}
-    <span class="link">View piece</span>
-  </a>`;
-}
-
 /* ---------- pages ---------- */
 function home() {
   const feat = PRODUCTS.find(p => p.status === "AVAILABLE") || PRODUCTS[0];
@@ -409,26 +382,13 @@ function home() {
       <div class="hero__sub">
         ${SITE.intro.map(line => `<p>${line}</p>`).join("")}
       </div>
-      <div><a class="btn" href="#/collection">Shop the collection</a></div>
+      <div><a class="btn" href="#/collection">Discover the collection</a></div>
     </div>
     <div class="hero__img">
-      <a href="#/piece/${feat.piece}" aria-label="View ${pieceLabel(feat)}, ${feat.name}">
+      <a href="#/collection" aria-label="View ${pieceLabel(feat)}, ${feat.name}">
         ${media(cover, "", `${feat.name}, front view`, true)}
       </a>
     </div>
-  </section>`;
-}
-
-function collection() {
-  const list = PRODUCTS.filter(p => p.status !== "SOLD");
-  return `
-  <section class="wrap page">
-    <header class="page__head">
-      <h1 class="display">The Collection</h1>
-      <span class="label edition-tag">Edition 001</span>
-      <p class="lede">Five pieces will ever exist in this design. Once complete, this edition will be archived, making way for the next.</p>
-    </header>
-    ${list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="empty">The next piece is in the making.</p>`}
   </section>`;
 }
 
@@ -449,13 +409,13 @@ function piece(n) {
       <p class="buy__note">${SITE.delivery}</p>
     </div>`;
   } else if (p.status === "SOLD") {
-    buy = `<div class="buy"><p class="buy__status">This piece has found its owner.</p><a class="link" href="#/collection">View the collection</a></div>`;
+    buy = `<div class="buy"><p class="buy__status">This piece has found its owner.</p><a class="link" href="#/">Back to home</a></div>`;
   } else {
     buy = `<div class="buy"><p class="buy__status">Coming soon.</p><a class="btn" href="mailto:${SITE.email}?subject=${encodeURIComponent("Enquiry: " + pieceLabel(p))}">Enquire</a></div>`;
   }
   return `
   <article class="wrap product" data-piece="${p.piece}">
-    <div class="crumb"><a class="link" href="#/collection">← Collection</a></div>
+    <div class="crumb"><a class="link" href="#/">← Home</a></div>
     <div>
       <div class="gallery" id="gallery" role="group" aria-label="Product images">${gallery}</div>
       <p class="g-count label label--soft" id="gCount" aria-hidden="true">1 / ${p.images.length}</p>
@@ -504,7 +464,7 @@ function contact() {
 }
 
 function notFound() {
-  return `<section class="wrap page"><h1 class="display">Not found</h1><p class="lede" style="margin-top:24px">This page doesn't exist. <a class="link" href="#/collection">View the collection</a></p></section>`;
+  return `<section class="wrap page"><h1 class="display">Not found</h1><p class="lede" style="margin-top:24px">This page doesn't exist. <a class="link" href="#/">Back to home</a></p></section>`;
 }
 
 /* ---------- router ---------- */
@@ -520,17 +480,43 @@ function route() {
 
   switch (r) {
     case "":
-    case "home": html = home(); title = `${SITE.name} — ${SITE.tagline}`; current = "#/"; break;
-    case "collection": html = collection(); title = `The Collection — ${SITE.name}`; current = "#/collection"; break;
+    case "home":
+      html = home();
+      title = `${SITE.name} — ${SITE.tagline}`;
+      current = "#/";
+      break;
+    case "collection": {
+      const p = PRODUCTS.find(prod => prod.status === "AVAILABLE") || PRODUCTS[0];
+      html = piece(p.piece);
+      currentProduct = p;
+      title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`;
+      current = "#/collection";
+      break;
+    }
     case "piece": {
       const p = byPiece(parts[1]);
       html = piece(parts[1]);
-      if (p) { currentProduct = p; title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`; }
-      current = "#/collection"; break;
+      if (p) {
+        currentProduct = p;
+        title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`;
+      }
+      current = "#/collection";
+      break;
     }
-    case "care": html = care(); title = `Care — ${SITE.name}`; tone = "taupe"; current = "#/care"; break;
-    case "contact": html = contact(); title = `Contact — ${SITE.name}`; current = "#/contact"; break;
-    default: html = notFound(); title = `Not found — ${SITE.name}`;
+    case "care":
+      html = care();
+      title = `Care — ${SITE.name}`;
+      tone = "taupe";
+      current = "#/care";
+      break;
+    case "contact":
+      html = contact();
+      title = `Contact — ${SITE.name}`;
+      current = "#/contact";
+      break;
+    default:
+      html = notFound();
+      title = `Not found — ${SITE.name}`;
   }
 
   main.classList.remove("in");
@@ -539,7 +525,8 @@ function route() {
     document.title = title;
     document.body.dataset.tone = tone;
     document.querySelectorAll("#nav a").forEach(a => {
-      if (a.getAttribute("href") === current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+      if (a.getAttribute("href") === current) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
     });
     window.scrollTo(0, 0);
     closeDrawer(true);
