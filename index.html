@@ -129,7 +129,7 @@ body[data-tone="taupe"] .site-header { background: var(--taupe); }
 .drawer__foot { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink-soft); }
 
 /* ---------- layout ---------- */
-main { outline: none; opacity: 0; transition: opacity .45s var(--ease); min-height: calc(100vh - var(--header-h) - 240px); }
+main { outline: none; opacity: 0; transition: opacity .45s var(--ease); min-height: calc(100vh - var(--header-h) - 100px); }
 main.in { opacity: 1; }
 .wrap { padding: 0 var(--gutter); max-width: 1680px; margin: 0 auto; }
 .page { padding-top: clamp(56px, 10vw, 140px); padding-bottom: clamp(88px, 14vw, 200px); }
@@ -246,14 +246,6 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 .lb :focus-visible { outline-color: var(--ivory); }
 @media (max-width: 600px) { .lb__stage { inset: 72px 8px 80px; } .lb .ctl--prev, .lb .ctl--next { top: auto; bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); margin: 0; } }
 
-/* ---------- archive ---------- */
-.archive { display: grid; gap: 64px var(--gutter); }
-@media (min-width: 720px) { .archive { grid-template-columns: repeat(3, 1fr); } .archive > :nth-child(3n+2) { margin-top: 72px; } }
-.a-item { display: block; }
-.a-item .media { margin-bottom: 20px; }
-.a-item__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-top: 1px solid rgba(23,23,23,.2); padding-top: 14px; }
-.a-item__name { font-family: var(--serif); font-size: 1.6rem; line-height: 1.15; margin-top: 10px; }
-.a-item--sold .media img { filter: saturate(.7); }
 .status { font-size: 11px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; white-space: nowrap; }
 .status--available::before { content: ""; display: inline-block; width: 14px; height: 1px; background: var(--champagne); vertical-align: middle; margin-right: 10px; }
 .status--sold, .status--soon { color: var(--ink-soft); }
@@ -271,15 +263,8 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 .contact-list .v { color: var(--ink-soft); font-size: 13px; }
 
 /* ---------- footer ---------- */
-.site-footer { padding: clamp(56px, 8vw, 96px) var(--gutter) 40px; border-top: 1px solid rgba(23,23,23,.12); max-width: 1680px; margin: 0 auto; }
-.site-footer__grid { display: grid; gap: 40px; }
-@media (min-width: 720px) { .site-footer__grid { grid-template-columns: 1fr auto; align-items: end; } }
-.foot-brand .wordmark { display: inline-block; padding: 0; }
-.foot-brand p { font-family: var(--serif); font-style: italic; font-size: 1.2rem; margin-top: 6px; }
-.foot-nav { display: flex; flex-wrap: wrap; gap: 4px 28px; }
-.foot-nav a { font-size: 11px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; padding: 10px 0; }
-.foot-nav a:hover { color: var(--ink-soft); }
-.copy { margin-top: 48px; font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.site-footer { padding: 40px var(--gutter); border-top: 1px solid rgba(23,23,23,.12); max-width: 1680px; margin: 0 auto; }
+.copy { font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .copy a:hover { color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -311,13 +296,6 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 <main id="main" tabindex="-1"></main>
 
 <footer class="site-footer">
-  <div class="site-footer__grid">
-    <div class="foot-brand">
-      <a class="wordmark" href="#/">NĀDIRAH</a>
-      <p>Rare, always.</p>
-    </div>
-    <nav class="foot-nav" aria-label="Footer" id="footNav"></nav>
-  </div>
   <div class="copy">
     <span id="copy"></span>
     <span id="social"></span>
@@ -379,11 +357,10 @@ const PRODUCTS = [
 
 const NAV = [
   ["Collection", "#/collection"],
-  ["Archive", "#/archive"],
   ["About", "#/about"],
   ["Care", "#/care"]
 ];
-const FOOT = NAV.concat([["Contact", "#/contact"]]);
+const DRAWER_NAV = NAV.concat([["Contact", "#/contact"]]);
 
 /* ---------- helpers ---------- */
 const $ = (s, r = document) => r.querySelector(s);
@@ -442,7 +419,6 @@ function collection() {
       <h1 class="display">The Collection</h1>
     </header>
     ${list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="empty">The next piece is in the making.</p>`}
-    <p style="margin-top:96px"><a class="link" href="#/archive">See the archive</a></p>
   </section>`;
 }
 
@@ -452,7 +428,7 @@ function piece(n) {
   const avail = p.status === "AVAILABLE";
   const gallery = p.images.map((img, i) => `
     <button class="g-item" data-i="${i}" aria-label="Enlarge image ${i + 1} of ${p.images.length}: ${img.label}">
-      ${media(img, "r-45", `${p.name}, ${img.alt}`, i < 2)}
+      ${media(img, "r-45", `${p.name},${img.alt}`, i < 2)}
     </button>`).join("");
   const details = p.details.map(d => `<div class="details__row"><dt>${d[0]}</dt><dd>${d[1]}</dd></div>`).join("");
   let buy;
@@ -485,26 +461,6 @@ function piece(n) {
       ${buy}
     </div>
   </article>`;
-}
-
-function archive() {
-  const items = PRODUCTS.map(p => `
-  <a class="a-item a-item--${statusKey(p)}" href="#/piece/${p.piece}">
-    ${media(p.images[0], "r-45", `${p.name}, front view`)}
-    <div class="a-item__row">
-      <span class="label">${p.piece} / ${p.edition}</span>
-      <span class="status status--${statusKey(p)}">${p.status}</span>
-    </div>
-    <p class="a-item__name">${p.name}</p>
-  </a>`).join("");
-  return `
-  <section class="wrap page">
-    <header class="page__head">
-      <h1 class="display">The Archive</h1>
-      <p class="lede" style="margin-top:28px">Every numbered piece has a place in the history of NĀDIRAH.</p>
-    </header>
-    <div class="archive">${items}</div>
-  </section>`;
 }
 
 function about() {
@@ -575,7 +531,6 @@ function route() {
       if (p) { currentProduct = p; title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`; }
       current = "#/collection"; break;
     }
-    case "archive": html = archive(); title = `The Archive — ${SITE.name}`; tone = "taupe"; current = "#/archive"; break;
     case "about": html = about(); title = `About — ${SITE.name}`; current = "#/about"; break;
     case "care": html = care(); title = `Care — ${SITE.name}`; tone = "taupe"; current = "#/care"; break;
     case "contact": html = contact(); title = `Contact — ${SITE.name}`; current = "#/contact"; break;
@@ -587,7 +542,7 @@ function route() {
     main.innerHTML = html;
     document.title = title;
     document.body.dataset.tone = tone;
-    document.querySelectorAll("#nav a, #footNav a").forEach(a => {
+    document.querySelectorAll("#nav a").forEach(a => {
       if (a.getAttribute("href") === current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
     window.scrollTo(0, 0);
@@ -682,8 +637,7 @@ drawer.addEventListener("click", e => { if (e.target.closest("a")) closeDrawer(t
 /* ---------- boot ---------- */
 const navHtml = (list) => list.map(([t, h]) => `<a href="${h}">${t}</a>`).join("");
 $("#nav").innerHTML = navHtml(NAV);
-$("#drawerNav").innerHTML = navHtml(FOOT);
-$("#footNav").innerHTML = navHtml(FOOT);
+$("#drawerNav").innerHTML = navHtml(DRAWER_NAV);
 $("#copy").textContent = `© ${new Date().getFullYear()} ${SITE.name}. All rights reserved.`;
 $("#social").innerHTML = `<a href="${SITE.instagram}" target="_blank" rel="noopener">Instagram</a>`;
 window.addEventListener("hashchange", route);
