@@ -135,6 +135,7 @@ main.in { opacity: 1; }
 .page { padding-top: clamp(56px, 10vw, 140px); padding-bottom: clamp(88px, 14vw, 200px); }
 .page__head { margin-bottom: clamp(56px, 8vw, 120px); }
 .page__head .label { margin-bottom: 20px; display: block; }
+.edition-tag { margin-top: 36px; margin-bottom: 12px; }
 
 /* image / placeholder */
 .media { position: relative; background: var(--taupe); overflow: hidden; }
@@ -418,6 +419,8 @@ function collection() {
   <section class="wrap page">
     <header class="page__head">
       <h1 class="display">The Collection</h1>
+      <span class="label edition-tag">Edition 001</span>
+      <p class="lede">Five pieces will ever exist in this design. Once complete, this edition will be archived, making way for the next.</p>
     </header>
     ${list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="empty">The next piece is in the making.</p>`}
   </section>`;
@@ -446,7 +449,7 @@ function piece(n) {
   }
   return `
   <article class="wrap product" data-piece="${p.piece}">
-    <div class="crumb"><a class="link" href="#/collection">Collection</a></div>
+    <div class="crumb"><a class="link" href="#/collection">← Collection</a></div>
     <div>
       <div class="gallery" id="gallery" role="group" aria-label="Product images">${gallery}</div>
       <p class="g-count label label--soft" id="gCount" aria-hidden="true">1 / ${p.images.length}</p>
