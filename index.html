@@ -139,43 +139,37 @@ main.in { opacity: 1; }
 /* image / placeholder */
 .media { position: relative; background: var(--taupe); overflow: hidden; }
 body[data-tone="taupe"] .media { background: #DCD3C6; }
-.media img { width: 100%; height: 100%; object-fit: cover; }
-.ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; }
-.ph span { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-soft); }
+.media img { width: 100%; height: 100%; object-fit: cover; opacity: 1; display: block; }
+.ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; min-height: 380px; }
+.ph span { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-soft); }
 .ph::before { content: ""; position: absolute; left: 50%; top: calc(50% - 26px); width: 1px; height: 14px; background: var(--champagne); }
 .r-45 { aspect-ratio: 4 / 5; }
-.r-32 { aspect-ratio: 3 / 2; }
 
 /* ---------- home ---------- */
-.hero {
-  min-height: calc(85svh - var(--header-h) - env(safe-area-inset-top, 0px));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 32px;
-  padding-bottom: clamp(56px, 8vw, 96px);
-}
-.hero__text {
-  display: flex;
-  flex-direction: column;
-  max-width: 44em;
-}
+.hero { min-height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px)); display: grid; gap: 40px; padding-top: 24px; padding-bottom: clamp(56px, 8vw, 96px); }
+.hero__text { display: flex; flex-direction: column; justify-content: flex-end; gap: 0; }
 .hero__name { font-family: var(--serif); font-weight: 300; font-size: clamp(3rem, 12.5vw, 6.6rem); letter-spacing: .12em; line-height: 1; margin-left: -.04em; }
 .hero__tag { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(1.6rem, 3vw, 2.4rem); margin-top: 18px; letter-spacing: .04em; }
 .hero__line { width: 40px; height: 1px; background: var(--champagne); margin: 36px 0 24px; }
-.hero__sub { max-width: 38em; margin-bottom: 40px; }
-.hero__sub p { color: var(--ink-soft); font-family: var(--serif); font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.6; }
-.hero__sub p + p { margin-top: 14px; }
+.hero__sub { max-width: 28em; margin-bottom: 40px; }
+.hero__sub p { color: var(--ink-soft); }
+.hero__sub p + p { margin-top: 10px; }
+.hero__img { align-self: stretch; pointer-events: none; user-select: none; }
+.hero__img .media { height: 100%; min-height: 520px; }
+@media (min-width: 900px) {
+  .hero { grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); padding-top: 32px; }
+  .hero__text { grid-column: 1 / span 5; }
+  .hero__img { grid-column: 7 / span 6; }
+  .hero__img .media { min-height: 540px; }
+}
+@media (max-width: 899px) { .hero__img .media { aspect-ratio: 4 / 5; min-height: 0; height: auto; } }
 
 /* ---------- product ---------- */
 .product { display: grid; gap: 40px; padding-top: 8px; padding-bottom: clamp(88px, 12vw, 180px); }
 .crumb { padding: 20px 0 8px; }
-.gallery { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.gallery { display: flex; flex-direction: column; gap: 24px; }
 .g-item { display: block; width: 100%; cursor: zoom-in; }
 .g-item .media { width: 100%; }
-.g-item:nth-child(1), .g-item:nth-child(4) { grid-column: 1 / -1; }
-.g-item:nth-child(4) .media { aspect-ratio: 3 / 2; }
 .g-item:hover .media img { transform: scale(1.02); }
 .g-count { display: none; }
 .info { max-width: 30rem; }
@@ -198,7 +192,7 @@ body[data-tone="taupe"] .media { background: #DCD3C6; }
   .crumb { grid-column: 1 / -1; }
 }
 @media (max-width: 899px) {
-  .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter); scrollbar-width: none; scroll-padding: 0 var(--gutter); }
+  .gallery { display: flex; flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter); scrollbar-width: none; scroll-padding: 0 var(--gutter); }
   .gallery::-webkit-scrollbar { display: none; }
   .g-item { flex: 0 0 88%; scroll-snap-align: start; }
   .g-item:nth-child(n) .media { aspect-ratio: 4 / 5; }
@@ -307,4 +301,320 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 <script>
 /* ==========================================================
    CONTENT & DATA — edit here. Everything on the site reads
-   from SITE and PRODUCTS. Add a
+   from SITE and PRODUCTS. Add a product = add an object.
+   ========================================================== */
+const SITE = {
+  name: "NĀDIRAH",
+  tagline: "Rare, always.",
+  heroImage: "bead.webp",
+  intro: [
+    "NĀDIRAH was created for the beauty of being distinct.",
+    "Through hand-beaded bags made in limited quantities, we create pieces that stand apart without asking for attention, bringing individuality to something you carry every day.",
+    "Because some things are not meant to be ordinary."
+  ],
+  currency: "₦",
+  whatsapp: "234XXXXXXXXXX",            // international format, digits only
+  email: "hello@nadirah.example",
+  instagram: "https://instagram.com/nadirah",
+  instagramHandle: "@nadirah",
+  delivery: "Delivered within Nigeria in 3–5 working days. Each piece is sent in its dust bag."
+};
+
+const DEFAULT_DESC = "Hand-beaded for a lightweight, airy feel, with two thoughtfully designed compartments.";
+const DEFAULT_DETAILS = [
+  ["Hand-beaded", "Individually crafted by hand."],
+  ["Lightweight", "Designed to feel easy to carry."],
+  ["Airy", "Open beadwork creates a light, breathable feel."],
+  ["Two compartments", "Designed for effortless organisation."]
+];
+
+/* 3 Image slots: Front View, Back View, Side View */
+const VIEWS = ["Front View", "Back View", "Side View"];
+const slots = () => VIEWS.map(v => ({ src: "", label: v, alt: v.toLowerCase() }));
+
+/* status: AVAILABLE | SOLD | COMING SOON */
+const PRODUCTS = [
+  { piece: "001", edition: "005", collection: "I", name: "ALBA", price: 0, status: "SOLD",        description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
+  { piece: "002", edition: "005", collection: "I", name: "ALBA", price: 0, status: "AVAILABLE",   description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
+  { piece: "003", edition: "005", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
+  { piece: "004", edition: "005", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
+  { piece: "005", edition: "005", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() }
+];
+
+/* Navigation items */
+const NAV = [
+  ["Home", "#/"],
+  ["Collection", "#/collection"],
+  ["Care", "#/care"],
+  ["Contact", "#/contact"]
+];
+
+/* ---------- helpers ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const price = p => p.price ? SITE.currency + Number(p.price).toLocaleString("en-NG") : SITE.currency + "XX,XXX";
+const byPiece = n => PRODUCTS.find(p => p.piece === n);
+const pieceLabel = p => `EDITION 001 · PIECE 02 / 05 · ${p.status}`;
+const wa = txt => `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(txt)}`;
+const claimUrl = p => wa(`Hello NĀDIRAH, I would like to claim Piece ${p.piece} / ${p.edition} — ${p.name}.`);
+
+function media(img, cls, alt) {
+  const ph = img && img.src ? "" : `<div class="ph" role="img" aria-label="Image placeholder: ${alt}"><span>${(img && img.label) || "Image"}</span></div>`;
+  const tag = img && img.src ? `<img src="${img.src}" alt="${alt}">` : "";
+  return `<div class="media ${cls}">${tag}${ph}</div>`;
+}
+
+/* ---------- pages ---------- */
+function home() {
+  const heroMedia = { src: SITE.heroImage, label: "ALBA beadwork", alt: "NĀDIRAH hand-beaded details" };
+  return `
+  <section class="wrap hero" aria-label="Introduction">
+    <div class="hero__text">
+      <h1 class="hero__name">${SITE.name}</h1>
+      <p class="hero__tag">${SITE.tagline}</p>
+      <div class="hero__line" aria-hidden="true"></div>
+      <div class="hero__sub">
+        ${SITE.intro.map(line => `<p>${line}</p>`).join("")}
+      </div>
+      <div><a class="btn" href="#/collection">Discover the collection</a></div>
+    </div>
+    <div class="hero__img">
+      ${media(heroMedia, "", "NĀDIRAH hand-beaded details")}
+    </div>
+  </section>`;
+}
+
+function piece(n) {
+  const p = byPiece(n);
+  if (!p) return notFound();
+  const avail = p.status === "AVAILABLE";
+  const gallery = p.images.map((img, i) => `
+    <button class="g-item" data-i="${i}" aria-label="Enlarge image ${i + 1} of ${p.images.length}: ${img.label}">
+      ${media(img, "r-45", `${p.name},${img.alt}`)}
+    </button>`).join("");
+  const details = p.details.map(d => `<div class="details__row"><dt>${d[0]}</dt><dd>${d[1]}</dd></div>`).join("");
+  let buy;
+  if (avail) {
+    buy = `<div class="buy" id="buy">
+      <p class="buy__price">${price(p)}</p>
+      <a class="btn btn--solid" href="${claimUrl(p)}" target="_blank" rel="noopener">Claim this piece</a>
+      <p class="buy__note">${SITE.delivery}</p>
+    </div>`;
+  } else if (p.status === "SOLD") {
+    buy = `<div class="buy"><p class="buy__status">This piece has found its owner.</p><a class="link" href="#/">Back to home</a></div>`;
+  } else {
+    buy = `<div class="buy"><p class="buy__status">Coming soon.</p><a class="btn" href="mailto:${SITE.email}?subject=${encodeURIComponent("Enquiry: " + pieceLabel(p))}">Enquire</a></div>`;
+  }
+  return `
+  <article class="wrap product" data-piece="${p.piece}">
+    <div class="crumb"><a class="link" href="#/">← Home</a></div>
+    <div>
+      <div class="gallery" id="gallery" role="group" aria-label="Product images">${gallery}</div>
+      <p class="g-count label label--soft" id="gCount" aria-hidden="true">1 / ${p.images.length}</p>
+    </div>
+    <div class="info">
+      <span class="label label--soft info__num">${pieceLabel(p)}</span>
+      <h1 class="info__name">${p.name}</h1>
+      <p class="info__desc">${p.description}</p>
+      <div class="details">
+        <h2 class="label">The Details</h2>
+        <dl>${details}</dl>
+      </div>
+      ${buy}
+    </div>
+  </article>`;
+}
+
+function care() {
+  return `
+  <section class="wrap page">
+    <div class="split">
+      <h1 class="a display">Care</h1>
+      <div class="b prose">
+        <p>Your NĀDIRAH piece is individually made and should be handled with care.</p>
+        <p>Store in its dust bag when not in use. Keep away from excessive moisture, rough surfaces, and anything that may catch or pull the beadwork.</p>
+      </div>
+    </div>
+  </section>`;
+}
+
+function contact() {
+  return `
+  <section class="wrap page">
+    <div class="split">
+      <div class="a"><h1 class="display">Contact</h1></div>
+      <div class="b">
+        <p class="lede">For purchases, enquiries, or private orders:</p>
+        <div class="contact-list">
+          <a href="${wa("Hello NĀDIRAH,")}" target="_blank" rel="noopener"><span class="n">WhatsApp</span><span class="v">Message us</span></a>
+          <a href="mailto:${SITE.email}"><span class="n">Email</span><span class="v">${SITE.email}</span></a>
+          <a href="${SITE.instagram}" target="_blank" rel="noopener"><span class="n">Instagram</span><span class="v">${SITE.instagramHandle}</span></a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function notFound() {
+  return `<section class="wrap page"><h1 class="display">Not found</h1><p class="lede" style="margin-top:24px">This page doesn't exist. <a class="link" href="#/">Back to home</a></p></section>`;
+}
+
+/* ---------- router ---------- */
+const main = $("#main");
+let currentProduct = null;
+let barObserver = null;
+
+function route() {
+  const parts = (location.hash.replace(/^#\/?/, "") || "").split("/");
+  const r = parts[0] || "home";
+  let html, title = SITE.name, tone = "ivory", current = "";
+  currentProduct = null;
+
+  switch (r) {
+    case "":
+    case "home":
+      html = home();
+      title = `${SITE.name} — ${SITE.tagline}`;
+      current = "#/";
+      break;
+    case "collection": {
+      const p = PRODUCTS.find(prod => prod.status === "AVAILABLE") || PRODUCTS[0];
+      html = piece(p.piece);
+      currentProduct = p;
+      title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`;
+      current = "#/collection";
+      break;
+    }
+    case "piece": {
+      const p = byPiece(parts[1]);
+      html = piece(parts[1]);
+      if (p) {
+        currentProduct = p;
+        title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`;
+      }
+      current = "#/collection";
+      break;
+    }
+    case "care":
+      html = care();
+      title = `Care — ${SITE.name}`;
+      tone = "taupe";
+      current = "#/care";
+      break;
+    case "contact":
+      html = contact();
+      title = `Contact — ${SITE.name}`;
+      current = "#/contact";
+      break;
+    default:
+      html = notFound();
+      title = `Not found — ${SITE.name}`;
+  }
+
+  main.classList.remove("in");
+  setTimeout(() => {
+    main.innerHTML = html;
+    document.title = title;
+    document.body.dataset.tone = tone;
+    document.querySelectorAll("#nav a").forEach(a => {
+      if (a.getAttribute("href") === current) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+    closeDrawer(true);
+    setupPiece();
+    requestAnimationFrame(() => { main.classList.add("in"); });
+    main.focus({ preventScroll: true });
+  }, main.innerHTML ? 180 : 0);
+}
+
+/* ---------- product interactions ---------- */
+function setupPiece() {
+  const bar = $("#claimBar");
+  if (barObserver) { barObserver.disconnect(); barObserver = null; }
+  bar.classList.remove("show"); bar.setAttribute("aria-hidden", "true"); bar.innerHTML = "";
+  if (!currentProduct) return;
+  const p = currentProduct;
+
+  const g = $("#gallery");
+  g.addEventListener("click", e => {
+    const b = e.target.closest(".g-item");
+    if (b) openLb(+b.dataset.i);
+  });
+  const counter = $("#gCount");
+  g.addEventListener("scroll", () => {
+    const first = g.firstElementChild;
+    if (!first) return;
+    const i = Math.round(g.scrollLeft / (first.offsetWidth + 8));
+    counter.textContent = `${Math.min(i + 1, p.images.length)} / ${p.images.length}`;
+  }, { passive: true });
+
+  if (p.status === "AVAILABLE") {
+    bar.innerHTML = `<span class="claim-bar__price">${price(p)}</span><a class="btn btn--solid" href="${claimUrl(p)}" target="_blank" rel="noopener">Claim this piece</a>`;
+    const target = $("#buy");
+    if (target && "IntersectionObserver" in window) {
+      barObserver = new IntersectionObserver(([e]) => {
+        const show = !e.isIntersecting;
+        bar.classList.toggle("show", show);
+        bar.setAttribute("aria-hidden", show ? "false" : "true");
+      }, { threshold: 0 });
+      barObserver.observe(target);
+    }
+  }
+}
+
+/* ---------- lightbox ---------- */
+const lb = $("#lb");
+let lbIndex = 0, lbTrigger = null;
+function renderLb() {
+  const p = currentProduct; if (!p) return;
+  const img = p.images[lbIndex];
+  $("#lbFrame").innerHTML = img.src
+    ? `<img src="${img.src}" alt="${p.name}, ${img.alt}">`
+    : `<div class="ph" role="img" aria-label="Image placeholder: ${img.label}"><span>${img.label}</span></div>`;
+  $("#lbCap").textContent = `${img.label} · ${lbIndex + 1} / ${p.images.length}`;
+}
+function openLb(i) {
+  lbIndex = i; lbTrigger = document.activeElement; renderLb();
+  if (!lb.open) lb.showModal();
+}
+function stepLb(d) { const n = currentProduct.images.length; lbIndex = (lbIndex + d + n) % n; renderLb(); }
+$("#lbClose").addEventListener("click", () => lb.close());
+$("#lbPrev").addEventListener("click", () => stepLb(-1));
+$("#lbNext").addEventListener("click", () => stepLb(1));
+lb.addEventListener("close", () => { if (lbTrigger) lbTrigger.focus(); });
+lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+lb.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") stepLb(-1);
+  if (e.key === "ArrowRight") stepLb(1);
+});
+
+/* ---------- drawer ---------- */
+const drawer = $("#drawer"), menuBtn = $("#menuBtn");
+function openDrawer() {
+  drawer.classList.add("open"); drawer.setAttribute("aria-hidden", "false");
+  menuBtn.setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden";
+  $("#drawerClose").focus();
+}
+function closeDrawer(silent) {
+  if (!drawer.classList.contains("open")) return;
+  drawer.classList.remove("open"); drawer.setAttribute("aria-hidden", "true");
+  menuBtn.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+  if (!silent) menuBtn.focus();
+}
+menuBtn.addEventListener("click", openDrawer);
+$("#drawerClose").addEventListener("click", () => closeDrawer());
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+drawer.addEventListener("click", e => { if (e.target.closest("a")) closeDrawer(true); });
+
+/* ---------- boot ---------- */
+const navHtml = (list) => list.map(([t, h]) => `<a href="${h}">${t}</a>`).join("");
+$("#nav").innerHTML = navHtml(NAV);
+$("#drawerNav").innerHTML = navHtml(NAV);
+$("#copy").textContent = `© ${new Date().getFullYear()} ${SITE.name}. All rights reserved.`;
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
