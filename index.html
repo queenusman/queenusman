@@ -268,8 +268,7 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 
 /* ---------- footer ---------- */
 .site-footer { padding: 40px var(--gutter); border-top: 1px solid rgba(23,23,23,.12); max-width: 1680px; margin: 0 auto; }
-.copy { font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.copy a:hover { color: var(--ink); }
+.copy { font-size: 12px; color: var(--ink-soft); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
@@ -302,7 +301,6 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 <footer class="site-footer">
   <div class="copy">
     <span id="copy"></span>
-    <span id="social"></span>
   </div>
 </footer>
 
@@ -640,7 +638,6 @@ const navHtml = (list) => list.map(([t, h]) => `<a href="${h}">${t}</a>`).join("
 $("#nav").innerHTML = navHtml(NAV);
 $("#drawerNav").innerHTML = navHtml(NAV);
 $("#copy").textContent = `© ${new Date().getFullYear()} ${SITE.name}. All rights reserved.`;
-$("#social").innerHTML = `<a href="${SITE.instagram}" target="_blank" rel="noopener">Instagram</a>`;
 window.addEventListener("hashchange", route);
 route();
 </script>
