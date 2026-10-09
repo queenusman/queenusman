@@ -235,6 +235,7 @@ dialog.lb::backdrop { background: rgba(42,33,28,.96); }
 /* ---------- text pages ---------- */
 .prose p + p { margin-top: 1.4em; }
 .prose p { font-family: var(--serif); font-size: clamp(1.4rem, 2.3vw, 1.9rem); line-height: 1.5; }
+.prose .label { margin-top: 2.4em; margin-bottom: 0.8em; display: block; }
 .sign { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(2rem, 4vw, 3.2rem); margin-top: clamp(56px, 8vw, 96px); letter-spacing: .04em; }
 .split { display: grid; gap: 40px; }
 @media (min-width: 900px) { .split { grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); } .split > .a { grid-column: 1 / span 4; } .split > .b { grid-column: 6 / span 6; } }
@@ -430,8 +431,13 @@ function care() {
     <div class="split">
       <h1 class="a display">Care</h1>
       <div class="b prose">
-        <p>Your NĀDIRAH piece is individually made and should be handled with care.</p>
-        <p>Store in its dust bag when not in use. Keep away from excessive moisture, rough surfaces, and anything that may catch or pull the beadwork.</p>
+        <p>Each NĀDIRAH piece is individually hand-beaded and deserves gentle care.</p>
+        <p>Avoid excessive moisture, perfumes, and rough surfaces that may snag the beadwork. When not in use, store your bag in its dust bag in a cool, dry place.</p>
+        
+        <span class="label">Complimentary Repairs</span>
+        <p>For the first six months after purchase, NĀDIRAH offers complimentary repairs for eligible accidental damage to your bag's beadwork or structure.</p>
+        <p>Each request is assessed individually. Repairs are subject to inspection, and damage caused by misuse, neglect, or unauthorised alterations may not be covered.</p>
+        <p>To request a repair, contact us with your proof of purchase and photographs of the damage.</p>
       </div>
     </div>
   </section>`;
