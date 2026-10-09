@@ -375,3 +375,260 @@ const claimUrl = p => wa(`Hello NĀDIRAH, I would like to claim Piece ${p.piece}
 
 function media(img, cls, alt, eager) {
   const ph = img && img.src ? "" : `<div class="ph" role="img" aria-label="Image placeholder: ${alt}"><span>${(img && img.label) || "Image"}</span></div>`;
+  const tag = img && img.src ? `<img src="${img.src}" alt="${alt}" ${eager ? "" : 'loading="lazy"'} decoding="async" onload="this.classList.add('loaded')">` : "";
+  return `<div class="media ${cls}">${tag}${ph}</div>`;
+}
+
+function card(p) {
+  const showPrice = p.status === "AVAILABLE";
+  return `
+  <a class="card" href="#/piece/${p.piece}">
+    ${media(p.images[0], "r-45", `${p.name}, front view`)}
+    <p class="label label--soft card__meta">${pieceLabel(p)}</p>
+    <h2 class="card__name">${p.name}</h2>
+    <p class="card__desc">${p.description}</p>
+    ${showPrice ? `<p class="card__price">${price(p)}</p>` : `<p class="status status--${statusKey(p)}" style="margin-bottom:22px">${p.status}</p>`}
+    <span class="link">View piece</span>
+  </a>`;
+}
+
+/* ---------- pages ---------- */
+function home() {
+  const feat = PRODUCTS.find(p => p.status === "AVAILABLE") || PRODUCTS[0];
+  const cover = feat.images[0];
+  const list = PRODUCTS.filter(p => p.status !== "SOLD");
+
+  return `
+  <section class="wrap hero" aria-label="Introduction">
+    <div class="hero__text">
+      <h1 class="hero__name">${SITE.name}</h1>
+      <p class="hero__tag">${SITE.tagline}</p>
+      <div class="hero__line" aria-hidden="true"></div>
+      <p class="hero__sub">${SITE.intro}</p>
+      <div><a class="btn" href="#collection-grid">Shop the collection</a></div>
+    </div>
+    <div class="hero__img">
+      <a href="#/piece/${feat.piece}" aria-label="View ${pieceLabel(feat)}, ${feat.name}">
+        ${media(cover, "", `${feat.name}, front view`, true)}
+      </a>
+    </div>
+  </section>
+  <section class="wrap home-collection" id="collection-grid">
+    <header class="home-collection__head">
+      <h2 class="display">The Collection</h2>
+    </header>
+    ${list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="empty">The next piece is in the making.</p>`}
+  </section>`;
+}
+
+function piece(n) {
+  const p = byPiece(n);
+  if (!p) return notFound();
+  const avail = p.status === "AVAILABLE";
+  const gallery = p.images.map((img, i) => `
+    <button class="g-item" data-i="${i}" aria-label="Enlarge image ${i + 1} of ${p.images.length}: ${img.label}">
+      ${media(img, "r-45", `${p.name},${img.alt}`, i < 2)}
+    </button>`).join("");
+  const details = p.details.map(d => `<div class="details__row"><dt>${d[0]}</dt><dd>${d[1]}</dd></div>`).join("");
+  let buy;
+  if (avail) {
+    buy = `<div class="buy" id="buy">
+      <p class="buy__price">${price(p)}</p>
+      <a class="btn btn--solid" href="${claimUrl(p)}" target="_blank" rel="noopener">Claim this piece</a>
+      <p class="buy__note">${SITE.delivery}</p>
+    </div>`;
+  } else if (p.status === "SOLD") {
+    buy = `<div class="buy"><p class="buy__status">This piece has found its owner.</p><a class="link" href="#/">Back to home</a></div>`;
+  } else {
+    buy = `<div class="buy"><p class="buy__status">Coming soon.</p><a class="btn" href="mailto:${SITE.email}?subject=${encodeURIComponent("Enquiry: " + pieceLabel(p))}">Enquire</a></div>`;
+  }
+  return `
+  <article class="wrap product" data-piece="${p.piece}">
+    <div class="crumb"><a class="link" href="#/">← Home</a></div>
+    <div>
+      <div class="gallery" id="gallery" role="group" aria-label="Product images">${gallery}</div>
+      <p class="g-count label label--soft" id="gCount" aria-hidden="true">1 / ${p.images.length}</p>
+    </div>
+    <div class="info">
+      <span class="label label--soft info__num">${pieceLabel(p)}</span>
+      <h1 class="info__name">${p.name}</h1>
+      <p class="info__desc">${p.description}</p>
+      <div class="details">
+        <h2 class="label">The Details</h2>
+        <dl>${details}</dl>
+      </div>
+      ${buy}
+    </div>
+  </article>`;
+}
+
+function care() {
+  return `
+  <section class="wrap page">
+    <div class="split">
+      <h1 class="a display">Care</h1>
+      <div class="b prose">
+        <p>Your NĀDIRAH piece is individually made and should be handled with care.</p>
+        <p>Store in its dust bag when not in use. Keep away from excessive moisture, rough surfaces, and anything that may catch or pull the beadwork.</p>
+      </div>
+    </div>
+  </section>`;
+}
+
+function contact() {
+  return `
+  <section class="wrap page">
+    <div class="split">
+      <div class="a"><h1 class="display">Contact</h1></div>
+      <div class="b">
+        <p class="lede">For purchases, enquiries, or private orders:</p>
+        <div class="contact-list">
+          <a href="${wa("Hello NĀDIRAH,")}" target="_blank" rel="noopener"><span class="n">WhatsApp</span><span class="v">Message us</span></a>
+          <a href="mailto:${SITE.email}"><span class="n">Email</span><span class="v">${SITE.email}</span></a>
+          <a href="${SITE.instagram}" target="_blank" rel="noopener"><span class="n">Instagram</span><span class="v">${SITE.instagramHandle}</span></a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function notFound() {
+  return `<section class="wrap page"><h1 class="display">Not found</h1><p class="lede" style="margin-top:24px">This page doesn't exist. <a class="link" href="#/">Back to home</a></p></section>`;
+}
+
+/* ---------- router ---------- */
+const main = $("#main");
+let currentProduct = null;
+let barObserver = null;
+
+function route() {
+  const hash = location.hash.replace(/^#\/?/, "");
+  if (hash.startsWith("collection-grid")) return;
+
+  const parts = (hash || "").split("/");
+  const r = parts[0] || "home";
+  let html, title = SITE.name, tone = "ivory", current = "#/";
+  currentProduct = null;
+
+  switch (r) {
+    case "":
+    case "home": html = home(); title = `${SITE.name} — ${SITE.tagline}`; current = "#/"; break;
+    case "piece": {
+      const p = byPiece(parts[1]);
+      html = piece(parts[1]);
+      if (p) { currentProduct = p; title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`; }
+      current = "#/"; break;
+    }
+    case "care": html = care(); title = `Care — ${SITE.name}`; tone = "taupe"; current = "#/care"; break;
+    case "contact": html = contact(); title = `Contact — ${SITE.name}`; current = "#/contact"; break;
+    default: html = notFound(); title = `Not found — ${SITE.name}`;
+  }
+
+  main.classList.remove("in");
+  setTimeout(() => {
+    main.innerHTML = html;
+    document.title = title;
+    document.body.dataset.tone = tone;
+    document.querySelectorAll("#nav a").forEach(a => {
+      if (a.getAttribute("href") === current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+    closeDrawer(true);
+    setupPiece();
+    requestAnimationFrame(() => { main.classList.add("in"); });
+    main.focus({ preventScroll: true });
+  }, main.innerHTML ? 180 : 0);
+}
+
+/* ---------- product interactions ---------- */
+function setupPiece() {
+  const bar = $("#claimBar");
+  if (barObserver) { barObserver.disconnect(); barObserver = null; }
+  bar.classList.remove("show"); bar.setAttribute("aria-hidden", "true"); bar.innerHTML = "";
+  if (!currentProduct) return;
+  const p = currentProduct;
+
+  const g = $("#gallery");
+  g.addEventListener("click", e => {
+    const b = e.target.closest(".g-item");
+    if (b) openLb(+b.dataset.i);
+  });
+  const counter = $("#gCount");
+  g.addEventListener("scroll", () => {
+    const first = g.firstElementChild;
+    if (!first) return;
+    const i = Math.round(g.scrollLeft / (first.offsetWidth + 8));
+    counter.textContent = `${Math.min(i + 1, p.images.length)} / ${p.images.length}`;
+  }, { passive: true });
+
+  if (p.status === "AVAILABLE") {
+    bar.innerHTML = `<span class="claim-bar__price">${price(p)}</span><a class="btn btn--solid" href="${claimUrl(p)}" target="_blank" rel="noopener">Claim this piece</a>`;
+    const target = $("#buy");
+    if (target && "IntersectionObserver" in window) {
+      barObserver = new IntersectionObserver(([e]) => {
+        const show = !e.isIntersecting;
+        bar.classList.toggle("show", show);
+        bar.setAttribute("aria-hidden", show ? "false" : "true");
+      }, { threshold: 0 });
+      barObserver.observe(target);
+    }
+  }
+}
+
+/* ---------- lightbox ---------- */
+const lb = $("#lb");
+let lbIndex = 0, lbTrigger = null;
+function renderLb() {
+  const p = currentProduct; if (!p) return;
+  const img = p.images[lbIndex];
+  $("#lbFrame").innerHTML = img.src
+    ? `<img src="${img.src}" alt="${p.name}, ${img.alt}">`
+    : `<div class="ph" role="img" aria-label="Image placeholder: ${img.label}"><span>${img.label}</span></div>`;
+  $("#lbCap").textContent = `${img.label} · ${lbIndex + 1} / ${p.images.length}`;
+}
+function openLb(i) {
+  lbIndex = i; lbTrigger = document.activeElement; renderLb();
+  if (!lb.open) lb.showModal();
+}
+function stepLb(d) { const n = currentProduct.images.length; lbIndex = (lbIndex + d + n) % n; renderLb(); }
+$("#lbClose").addEventListener("click", () => lb.close());
+$("#lbPrev").addEventListener("click", () => stepLb(-1));
+$("#lbNext").addEventListener("click", () => stepLb(1));
+lb.addEventListener("close", () => { if (lbTrigger) lbTrigger.focus(); });
+lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+lb.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") stepLb(-1);
+  if (e.key === "ArrowRight") stepLb(1);
+});
+
+/* ---------- drawer ---------- */
+const drawer = $("#drawer"), menuBtn = $("#menuBtn");
+function openDrawer() {
+  drawer.classList.add("open"); drawer.setAttribute("aria-hidden", "false");
+  menuBtn.setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden";
+  $("#drawerClose").focus();
+}
+function closeDrawer(silent) {
+  if (!drawer.classList.contains("open")) return;
+  drawer.classList.remove("open"); drawer.setAttribute("aria-hidden", "true");
+  menuBtn.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+  if (!silent) menuBtn.focus();
+}
+menuBtn.addEventListener("click", openDrawer);
+$("#drawerClose").addEventListener("click", () => closeDrawer());
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+drawer.addEventListener("click", e => { if (e.target.closest("a")) closeDrawer(true); });
+
+/* ---------- boot ---------- */
+const navHtml = (list) => list.map(([t, h]) => `<a href="${h}">${t}</a>`).join("");
+$("#nav").innerHTML = navHtml(NAV);
+$("#drawerNav").innerHTML = navHtml(NAV);
+$("#copy").textContent = `© ${new Date().getFullYear()} ${SITE.name}. All rights reserved.`;
+$("#social").innerHTML = `<a href="${SITE.instagram}" target="_blank" rel="noopener">Instagram</a>`;
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
