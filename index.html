@@ -39,7 +39,7 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 *, *::before, *::after { box-sizing: inherit; }
-html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + var(--header-h)); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + var(--header-h)); -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--ivory);
@@ -166,9 +166,7 @@ a:hover > .media img, .card:hover .media img { transform: scale(1.025); }
 }
 @media (max-width: 899px) { .hero__img .media { aspect-ratio: 4 / 5; min-height: 0; height: auto; } }
 
-/* collection on home */
-.home-collection { padding-top: clamp(40px, 8vw, 100px); padding-bottom: clamp(88px, 14vw, 180px); }
-.home-collection__head { margin-bottom: clamp(48px, 8vw, 96px); }
+/* ---------- collection ---------- */
 .grid { display: grid; gap: 72px var(--gutter); }
 @media (min-width: 720px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
@@ -360,6 +358,7 @@ const PRODUCTS = [
 /* Navigation items */
 const NAV = [
   ["Home", "#/"],
+  ["Collection", "#/collection"],
   ["Care", "#/care"],
   ["Contact", "#/contact"]
 ];
@@ -396,8 +395,6 @@ function card(p) {
 function home() {
   const feat = PRODUCTS.find(p => p.status === "AVAILABLE") || PRODUCTS[0];
   const cover = feat.images[0];
-  const list = PRODUCTS.filter(p => p.status !== "SOLD");
-
   return `
   <section class="wrap hero" aria-label="Introduction">
     <div class="hero__text">
@@ -405,17 +402,22 @@ function home() {
       <p class="hero__tag">${SITE.tagline}</p>
       <div class="hero__line" aria-hidden="true"></div>
       <p class="hero__sub">${SITE.intro}</p>
-      <div><a class="btn" href="#collection-grid">Shop the collection</a></div>
+      <div><a class="btn" href="#/collection">Shop the collection</a></div>
     </div>
     <div class="hero__img">
       <a href="#/piece/${feat.piece}" aria-label="View ${pieceLabel(feat)}, ${feat.name}">
         ${media(cover, "", `${feat.name}, front view`, true)}
       </a>
     </div>
-  </section>
-  <section class="wrap home-collection" id="collection-grid">
-    <header class="home-collection__head">
-      <h2 class="display">The Collection</h2>
+  </section>`;
+}
+
+function collection() {
+  const list = PRODUCTS.filter(p => p.status !== "SOLD");
+  return `
+  <section class="wrap page">
+    <header class="page__head">
+      <h1 class="display">The Collection</h1>
     </header>
     ${list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="empty">The next piece is in the making.</p>`}
   </section>`;
@@ -438,13 +440,13 @@ function piece(n) {
       <p class="buy__note">${SITE.delivery}</p>
     </div>`;
   } else if (p.status === "SOLD") {
-    buy = `<div class="buy"><p class="buy__status">This piece has found its owner.</p><a class="link" href="#/">Back to home</a></div>`;
+    buy = `<div class="buy"><p class="buy__status">This piece has found its owner.</p><a class="link" href="#/collection">View the collection</a></div>`;
   } else {
     buy = `<div class="buy"><p class="buy__status">Coming soon.</p><a class="btn" href="mailto:${SITE.email}?subject=${encodeURIComponent("Enquiry: " + pieceLabel(p))}">Enquire</a></div>`;
   }
   return `
   <article class="wrap product" data-piece="${p.piece}">
-    <div class="crumb"><a class="link" href="#/">← Home</a></div>
+    <div class="crumb"><a class="link" href="#/collection">Collection</a></div>
     <div>
       <div class="gallery" id="gallery" role="group" aria-label="Product images">${gallery}</div>
       <p class="g-count label label--soft" id="gCount" aria-hidden="true">1 / ${p.images.length}</p>
@@ -493,7 +495,7 @@ function contact() {
 }
 
 function notFound() {
-  return `<section class="wrap page"><h1 class="display">Not found</h1><p class="lede" style="margin-top:24px">This page doesn't exist. <a class="link" href="#/">Back to home</a></p></section>`;
+  return `<section class="wrap page"><h1 class="display">Not found</h1><p class="lede" style="margin-top:24px">This page doesn't exist. <a class="link" href="#/collection">View the collection</a></p></section>`;
 }
 
 /* ---------- router ---------- */
@@ -502,22 +504,20 @@ let currentProduct = null;
 let barObserver = null;
 
 function route() {
-  const hash = location.hash.replace(/^#\/?/, "");
-  if (hash.startsWith("collection-grid")) return;
-
-  const parts = (hash || "").split("/");
+  const parts = (location.hash.replace(/^#\/?/, "") || "").split("/");
   const r = parts[0] || "home";
-  let html, title = SITE.name, tone = "ivory", current = "#/";
+  let html, title = SITE.name, tone = "ivory", current = "";
   currentProduct = null;
 
   switch (r) {
     case "":
     case "home": html = home(); title = `${SITE.name} — ${SITE.tagline}`; current = "#/"; break;
+    case "collection": html = collection(); title = `The Collection — ${SITE.name}`; current = "#/collection"; break;
     case "piece": {
       const p = byPiece(parts[1]);
       html = piece(parts[1]);
       if (p) { currentProduct = p; title = `${p.name}, ${pieceLabel(p)} — ${SITE.name}`; }
-      current = "#/"; break;
+      current = "#/collection"; break;
     }
     case "care": html = care(); title = `Care — ${SITE.name}`; tone = "taupe"; current = "#/care"; break;
     case "contact": html = contact(); title = `Contact — ${SITE.name}`; current = "#/contact"; break;
