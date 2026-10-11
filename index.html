@@ -243,7 +243,7 @@ main.in { opacity: 1; }
 .ph::before { content: ""; position: absolute; left: 50%; top: calc(50% - 24px); width: 1px; height: 12px; background: var(--champagne); }
 .r-45 { aspect-ratio: 4 / 5; }
 
-/* ---------- Homepage Hero ---------- */
+/* ---------- Homepage Hero (With Brand Logo) ---------- */
 .hero {
   min-height: calc(85svh - var(--header-h) - env(safe-area-inset-top, 0px));
   display: flex;
@@ -261,10 +261,9 @@ main.in { opacity: 1; }
   max-width: 50em;
 }
 .hero__logo {
-  width: clamp(110px, 16vw, 170px);
+  width: clamp(140px, 20vw, 240px);
   height: auto;
   margin-bottom: 32px;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
   user-select: none;
 }
 .hero__name {
@@ -378,7 +377,6 @@ main.in { opacity: 1; }
 .buy__note { color: var(--ivory-soft); font-size: 13px; margin-top: 20px; max-width: 28em; line-height: 1.6; }
 .buy__status { font-family: var(--font-serif); font-size: 1.4rem; color: var(--ivory-soft); margin-bottom: 24px; }
 
-/* Grid breakpoint for desktop */
 @media (min-width: 900px) {
   .product {
     grid-template-columns: repeat(12, 1fr);
@@ -395,7 +393,6 @@ main.in { opacity: 1; }
   .crumb { grid-column: 1 / -1; }
 }
 
-/* Mobile gallery swipe */
 @media (max-width: 899px) {
   .gallery {
     flex-direction: row;
@@ -535,7 +532,7 @@ dialog.lb::backdrop { background: rgba(17,17,17,.96); }
    ========================================================== */
 const SITE = {
   name: "NĀDIRAH",
-  logoImage: "logo.jpg",
+  logoImage: "./Your%20paragraph%20text%20(2).png",
   heroHeadline: "DISTINCTION, BY DESIGN.",
   heroIntro: "Distinctive hand-beaded bags, made in limited quantities.",
   currency: "₦",
