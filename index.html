@@ -539,7 +539,7 @@ dialog.lb::backdrop { background: rgba(17,17,17,.96); }
    ========================================================== */
 const SITE = {
   name: "NĀDIRAH",
-  logoImage: "./Your%20paragraph%20text%20(2).png",
+  logoImage: "./Your%20paragraph%20text%20(3).png",
   heroHeadline: "DISTINCTION, BY DESIGN.",
   heroIntro: "Distinctive hand-beaded bags, made in limited quantities.",
   currency: "₦",
@@ -558,16 +558,19 @@ const DEFAULT_DETAILS = [
   ["Two compartments", "Designed for effortless organisation."]
 ];
 
-const VIEWS = ["Front View", "Back View", "Side View"];
-const slots = () => VIEWS.map(v => ({ src: "", label: v, alt: v.toLowerCase() }));
+/* 2 Product Views: Open and Closed */
+const productImages = () => [
+  { src: "./Floating%20Silver%20Beaded%20Handbag%20(1).png", label: "Open View", alt: "open view showing interior compartments" },
+  { src: "./Floating%20Silver%20Beaded%20Handbag.png", label: "Closed View", alt: "closed view of the bag silhouette" }
+];
 
 /* status: AVAILABLE | SOLD | COMING SOON */
 const PRODUCTS = [
-  { piece: "01", edition: "05", collection: "I", name: "ALBA", price: 0, status: "SOLD",        description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
-  { piece: "02", edition: "05", collection: "I", name: "ALBA", price: 0, status: "AVAILABLE",   description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
-  { piece: "03", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
-  { piece: "04", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() },
-  { piece: "05", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: slots() }
+  { piece: "01", edition: "05", collection: "I", name: "ALBA", price: 0, status: "SOLD",        description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "02", edition: "05", collection: "I", name: "ALBA", price: 0, status: "AVAILABLE",   description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "03", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "04", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "05", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() }
 ];
 
 const NAV = [
