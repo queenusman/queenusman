@@ -243,7 +243,7 @@ main.in { opacity: 1; }
 .ph::before { content: ""; position: absolute; left: 50%; top: calc(50% - 24px); width: 1px; height: 12px; background: var(--champagne); }
 .r-45 { aspect-ratio: 4 / 5; }
 
-/* ---------- Homepage Hero (With Brand Logo) ---------- */
+/* ---------- Homepage Hero ---------- */
 .hero {
   min-height: calc(85svh - var(--header-h) - env(safe-area-inset-top, 0px));
   display: flex;
@@ -284,7 +284,7 @@ main.in { opacity: 1; }
   margin-bottom: 40px;
 }
 
-/* ---------- Product Page (Desktop Gallery Scaled Up) ---------- */
+/* ---------- Product Page ---------- */
 .product {
   display: grid;
   gap: 40px;
@@ -377,6 +377,7 @@ main.in { opacity: 1; }
 .buy__note { color: var(--ivory-soft); font-size: 13px; margin-top: 20px; max-width: 28em; line-height: 1.6; }
 .buy__status { font-family: var(--font-serif); font-size: 1.4rem; color: var(--ivory-soft); margin-bottom: 24px; }
 
+/* Grid breakpoint for desktop */
 @media (min-width: 900px) {
   .product {
     grid-template-columns: repeat(12, 1fr);
@@ -393,6 +394,7 @@ main.in { opacity: 1; }
   .crumb { grid-column: 1 / -1; }
 }
 
+/* Mobile gallery swipe */
 @media (max-width: 899px) {
   .gallery {
     flex-direction: row;
@@ -543,7 +545,7 @@ const SITE = {
   delivery: "Delivered within Nigeria in 3–5 working days. Each piece is sent in its dust bag."
 };
 
-const DEFAULT_DESC = "Hand-beaded for a lightweight, airy feel, with two thoughtfully designed compartments.";
+const DEFAULT_DESC = "Intricate beadwork meets effortless lightness, with two compartments designed for considered organisation.";
 const DEFAULT_DETAILS = [
   ["Hand-beaded", "Individually crafted by hand."],
   ["Lightweight", "Designed to feel easy to carry."],
