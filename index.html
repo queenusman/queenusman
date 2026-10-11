@@ -371,13 +371,6 @@ main.in { opacity: 1; }
   line-height: 1.6;
 }
 
-.buy__price {
-  font-family: var(--font-sans);
-  font-size: var(--type-price);
-  font-weight: 500;
-  margin-bottom: 24px;
-  color: var(--ivory);
-}
 .buy .btn { min-width: 15rem; }
 .buy__note { color: var(--ivory-soft); font-size: 13px; margin-top: 20px; max-width: 28em; line-height: 1.6; }
 .buy__status { font-family: var(--font-serif); font-size: 1.4rem; color: var(--ivory-soft); margin-bottom: 24px; }
@@ -423,12 +416,11 @@ main.in { opacity: 1; }
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
   background: var(--black); border-top: 1px solid var(--border-subtle);
   padding: 14px var(--gutter) calc(env(safe-area-inset-bottom, 0px) + 14px);
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  display: flex; align-items: center; justify-content: center;
   transform: translateY(110%); transition: transform .45s var(--ease);
 }
 .claim-bar.show { transform: none; }
-.claim-bar__price { font-family: var(--font-sans); font-size: 16px; font-weight: 500; color: var(--ivory); }
-.claim-bar .btn { padding: 0 1.8em; }
+.claim-bar .btn { width: 100%; }
 @media (min-width: 900px) { .claim-bar { display: none; } }
 
 /* ---------- Lightbox Modal ---------- */
@@ -542,12 +534,11 @@ const SITE = {
   logoImage: "./Your%20paragraph%20text%20(3).png",
   heroHeadline: "DISTINCTION, BY DESIGN.",
   heroIntro: "Distinctive hand-beaded bags, made in limited quantities.",
-  currency: "₦",
   phone: "+234 8147850813",
   phoneLink: "tel:+2348147850813",
   email: "nadirah.collection@gmail.com",
   checkoutUrl: "https://selar.com/1001rts016",
-  delivery: "Estimated delivery: 3–7 working days, depending on destination."
+  delivery: "Estimated delivery: 3–7 working days, depending on destination. Shipping fees are charged separately."
 };
 
 const DEFAULT_DESC = "Intricate beadwork meets effortless lightness, with two compartments designed for considered organisation.";
@@ -566,11 +557,11 @@ const productImages = () => [
 
 /* status: AVAILABLE | SOLD | COMING SOON */
 const PRODUCTS = [
-  { piece: "01", edition: "05", collection: "I", name: "ALBA", price: 0, status: "SOLD",        description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
-  { piece: "02", edition: "05", collection: "I", name: "ALBA", price: 0, status: "AVAILABLE",   description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
-  { piece: "03", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
-  { piece: "04", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
-  { piece: "05", edition: "05", collection: "I", name: "ALBA", price: 0, status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() }
+  { piece: "01", edition: "05", collection: "I", name: "ALBA", status: "SOLD",        description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "02", edition: "05", collection: "I", name: "ALBA", status: "AVAILABLE",   description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "03", edition: "05", collection: "I", name: "ALBA", status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "04", edition: "05", collection: "I", name: "ALBA", status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() },
+  { piece: "05", edition: "05", collection: "I", name: "ALBA", status: "COMING SOON", description: DEFAULT_DESC, details: DEFAULT_DETAILS, images: productImages() }
 ];
 
 const NAV = [
@@ -582,7 +573,6 @@ const NAV = [
 
 /* ---------- Helpers ---------- */
 const $ = (s, r = document) => r.querySelector(s);
-const price = p => p.price ? SITE.currency + Number(p.price).toLocaleString("en-NG") : SITE.currency + "XX,XXX";
 const byPiece = n => PRODUCTS.find(p => p.piece === n || p.piece === "0" + parseInt(n, 10));
 const pieceLabel = p => `EDITION 001 · PIECE ${p.piece} / ${p.edition} · ${p.status}`;
 const claimUrl = () => SITE.checkoutUrl;
@@ -620,7 +610,6 @@ function piece(n) {
   let buy;
   if (avail) {
     buy = `<div class="buy" id="buy">
-      <p class="buy__price">${price(p)}</p>
       <a class="btn btn--solid" href="${claimUrl()}" target="_blank" rel="noopener">Claim this piece</a>
       <p class="buy__note">${SITE.delivery}</p>
     </div>`;
@@ -779,7 +768,7 @@ function setupPiece() {
   }
 
   if (p.status === "AVAILABLE") {
-    bar.innerHTML = `<span class="claim-bar__price">${price(p)}</span><a class="btn btn--solid" href="${claimUrl()}" target="_blank" rel="noopener">Claim this piece</a>`;
+    bar.innerHTML = `<a class="btn btn--solid" href="${claimUrl()}" target="_blank" rel="noopener">Claim this piece</a>`;
     const target = $("#buy");
     if (target && "IntersectionObserver" in window) {
       barObserver = new IntersectionObserver(([e]) => {
