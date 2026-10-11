@@ -243,7 +243,7 @@ main.in { opacity: 1; }
 .ph::before { content: ""; position: absolute; left: 50%; top: calc(50% - 24px); width: 1px; height: 12px; background: var(--champagne); }
 .r-45 { aspect-ratio: 4 / 5; }
 
-/* ---------- Homepage Hero ---------- */
+/* ---------- Homepage Hero (Circular Luxury Logo Seal) ---------- */
 .hero {
   min-height: calc(85svh - var(--header-h) - env(safe-area-inset-top, 0px));
   display: flex;
@@ -261,10 +261,15 @@ main.in { opacity: 1; }
   max-width: 50em;
 }
 .hero__logo {
-  width: clamp(140px, 20vw, 240px);
-  height: auto;
+  width: clamp(120px, 16vw, 180px);
+  height: clamp(120px, 16vw, 180px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(185, 168, 143, 0.35);
   margin-bottom: 32px;
   user-select: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 .hero__name {
   font-family: var(--font-serif);
@@ -284,7 +289,7 @@ main.in { opacity: 1; }
   margin-bottom: 40px;
 }
 
-/* ---------- Product Page ---------- */
+/* ---------- Product Page (Desktop Gallery Scaled Up) ---------- */
 .product {
   display: grid;
   gap: 40px;
@@ -538,11 +543,11 @@ const SITE = {
   heroHeadline: "DISTINCTION, BY DESIGN.",
   heroIntro: "Distinctive hand-beaded bags, made in limited quantities.",
   currency: "₦",
-  whatsapp: "234XXXXXXXXXX",
-  email: "hello@nadirah.example",
-  instagram: "https://instagram.com/nadirah",
-  instagramHandle: "@nadirah",
-  delivery: "Delivered within Nigeria in 3–5 working days. Each piece is sent in its dust bag."
+  phone: "+234 8147850813",
+  phoneLink: "tel:+2348147850813",
+  email: "nadirah.collection@gmail.com",
+  paystackUrl: "https://paystack.shop/pay/zijl-4bwtb",
+  delivery: "Estimated delivery: 3–7 working days, depending on destination."
 };
 
 const DEFAULT_DESC = "Intricate beadwork meets effortless lightness, with two compartments designed for considered organisation.";
@@ -577,8 +582,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const price = p => p.price ? SITE.currency + Number(p.price).toLocaleString("en-NG") : SITE.currency + "XX,XXX";
 const byPiece = n => PRODUCTS.find(p => p.piece === n || p.piece === "0" + parseInt(n, 10));
 const pieceLabel = p => `EDITION 001 · PIECE ${p.piece} / ${p.edition} · ${p.status}`;
-const wa = txt => `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(txt)}`;
-const claimUrl = p => wa(`Hello NĀDIRAH, I would like to claim Piece ${p.piece} / ${p.edition} — ${p.name}.`);
+const claimUrl = () => SITE.paystackUrl;
 
 function media(img, cls, alt) {
   const ph = img && img.src ? "" : `<div class="ph" role="img" aria-label="Image placeholder: ${alt}"><span>${(img && img.label) || "Image"}</span></div>`;
@@ -614,7 +618,7 @@ function piece(n) {
   if (avail) {
     buy = `<div class="buy" id="buy">
       <p class="buy__price">${price(p)}</p>
-      <a class="btn btn--solid" href="${claimUrl(p)}" target="_blank" rel="noopener">Claim this piece</a>
+      <a class="btn btn--solid" href="${claimUrl()}" target="_blank" rel="noopener">Claim this piece</a>
       <p class="buy__note">${SITE.delivery}</p>
     </div>`;
   } else if (p.status === "SOLD") {
@@ -666,11 +670,10 @@ function contact() {
     <div class="split">
       <div class="a"><h1 class="display">Contact</h1></div>
       <div class="b">
-        <p class="lede">For purchases, enquiries, or private orders:</p>
+        <p class="lede">For purchases, product enquiries, or private orders, please contact NĀDIRAH through the channels below.</p>
         <div class="contact-list">
-          <a href="${wa("Hello NĀDIRAH,")}" target="_blank" rel="noopener"><span class="n">WhatsApp</span><span class="v">Message us</span></a>
-          <a href="mailto:${SITE.email}"><span class="n">Email</span><span class="v">${SITE.email}</span></a>
-          <a href="${SITE.instagram}" target="_blank" rel="noopener"><span class="n">Instagram</span><span class="v">${SITE.instagramHandle}</span></a>
+          <a href="${SITE.phoneLink}"><span class="n">CALL US</span><span class="v">${SITE.phone}</span></a>
+          <a href="mailto:${SITE.email}"><span class="n">EMAIL</span><span class="v">${SITE.email}</span></a>
         </div>
       </div>
     </div>
@@ -773,7 +776,7 @@ function setupPiece() {
   }
 
   if (p.status === "AVAILABLE") {
-    bar.innerHTML = `<span class="claim-bar__price">${price(p)}</span><a class="btn btn--solid" href="${claimUrl(p)}" target="_blank" rel="noopener">Claim this piece</a>`;
+    bar.innerHTML = `<span class="claim-bar__price">${price(p)}</span><a class="btn btn--solid" href="${claimUrl()}" target="_blank" rel="noopener">Claim this piece</a>`;
     const target = $("#buy");
     if (target && "IntersectionObserver" in window) {
       barObserver = new IntersectionObserver(([e]) => {
