@@ -546,7 +546,7 @@ const SITE = {
   phone: "+234 8147850813",
   phoneLink: "tel:+2348147850813",
   email: "nadirah.collection@gmail.com",
-  paystackUrl: "https://paystack.shop/pay/zijl-4bwtb",
+  checkoutUrl: "https://selar.com/1001rts016",
   delivery: "Estimated delivery: 3–7 working days, depending on destination."
 };
 
@@ -582,7 +582,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const price = p => p.price ? SITE.currency + Number(p.price).toLocaleString("en-NG") : SITE.currency + "XX,XXX";
 const byPiece = n => PRODUCTS.find(p => p.piece === n || p.piece === "0" + parseInt(n, 10));
 const pieceLabel = p => `EDITION 001 · PIECE ${p.piece} / ${p.edition} · ${p.status}`;
-const claimUrl = () => SITE.paystackUrl;
+const claimUrl = () => SITE.checkoutUrl;
 
 function media(img, cls, alt) {
   const ph = img && img.src ? "" : `<div class="ph" role="img" aria-label="Image placeholder: ${alt}"><span>${(img && img.label) || "Image"}</span></div>`;
