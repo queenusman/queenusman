@@ -448,7 +448,7 @@ dialog.lb::backdrop { background: rgba(17,17,17,.96); }
 
 /* ---------- Editorial Text Pages (Care, Contact) ---------- */
 .prose p + p { margin-top: 1.5em; }
-.prose p { font-family: var(--sans); font-size: var(--type-body); line-height: var(--lh-body); color: var(--ivory-soft); max-width: 38em; }
+.prose p { font-family: var(--font-sans); font-size: var(--type-body); line-height: var(--lh-body); color: var(--ivory-soft); max-width: 38em; }
 .prose .label { margin-top: 2.8em; margin-bottom: 0.8em; display: block; color: var(--ivory); }
 .split { display: grid; gap: 48px; }
 @media (min-width: 900px) {
@@ -465,6 +465,29 @@ dialog.lb::backdrop { background: rgba(17,17,17,.96); }
 .contact-list a:hover { padding-left: 12px; }
 .contact-list .n { font-family: var(--font-serif); font-size: clamp(26px, 2.5vw, 36px); font-weight: 400; color: var(--ivory); }
 .contact-list .v { font-family: var(--font-sans); color: var(--ivory-soft); font-size: 13px; }
+
+/* WhatsApp Highlighted Pill */
+.highlight-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(185, 168, 143, 0.12);
+  border: 1px solid rgba(185, 168, 143, 0.45);
+  border-radius: 999px;
+  color: var(--champagne) !important;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px !important;
+  transition: all 0.3s var(--ease);
+}
+.contact-list a:hover .highlight-action {
+  background: var(--champagne);
+  color: var(--black) !important;
+  border-color: var(--champagne);
+  box-shadow: 0 0 16px rgba(185, 168, 143, 0.3);
+}
 
 /* ---------- Footer ---------- */
 .site-footer {
@@ -666,7 +689,10 @@ function contact() {
       <div class="b">
         <p class="lede">For purchases, product enquiries, or private orders, please contact NĀDIRAH through the channels below.</p>
         <div class="contact-list">
-          <a href="${waUrl("Hello NĀDIRAH, I have an enquiry.")}" target="_blank" rel="noopener"><span class="n">WHATSAPP</span><span class="v">Message us</span></a>
+          <a href="${waUrl("Hello NĀDIRAH, I would like to speak with you regarding your collection.")}" target="_blank" rel="noopener">
+            <span class="n">WHATSAPP</span>
+            <span class="v highlight-action">Speak with us &rarr;</span>
+          </a>
           <a href="${SITE.phoneLink}"><span class="n">CALL US</span><span class="v">${SITE.phone}</span></a>
           <a href="mailto:${SITE.email}"><span class="n">EMAIL</span><span class="v">${SITE.email}</span></a>
         </div>
